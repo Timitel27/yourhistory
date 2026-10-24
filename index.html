@@ -1,0 +1,373 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <!-- meta viewport обязателен для адаптива на телефонах -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Сохраняем ваши семейные истории в живые сайты-карточки" />
+    <title>Сохраняем ваши истории | Сайты-карточки для семейных пар</title>
+
+    <!-- Шрифты Google Fonts: Cormorant Garamond — заголовки, Jost — текст -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=Jost:wght@300;400;500&display=swap"
+      rel="stylesheet" />
+
+    <!-- Основные стили сайта -->
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- ============ ПРЕЛОАДЕР ============ -->
+    <!-- Экран загрузки: сердечко пульсирует, затем экран плавно исчезает (анимация в CSS) -->
+    <div class="preloader" id="preloader">
+      <div class="preloader__heart">♥</div>
+      <p class="preloader__text">Сохраняем ваши истории…</p>
+    </div>
+
+    <!-- ============ ШАПКА САЙТА ============ -->
+    <!-- position: fixed, полупрозрачная с эффектом стекла (см. CSS) -->
+    <header class="header" id="header">
+      <div class="container header__inner">
+        <!-- Логотип-монограмма: замените на свою надпись или картинку -->
+        <a href="#hero" class="logo" data-scroll>
+          <span class="logo__mark">♥</span>
+          <span class="logo__name">Ваши&nbsp;Истории</span>
+        </a>
+
+        <!-- Навигация для десктопа. На мобильных скрыта — работает бургер -->
+        <nav class="nav" id="nav">
+          <a href="#keep" class="nav__link" data-scroll>Что мы сохраняем</a>
+          <a href="#anim" class="nav__link" data-scroll>Анимации</a>
+          <a href="#works" class="nav__link" data-scroll>Работы</a>
+          <a href="#pricing" class="nav__link" data-scroll>Тарифы</a>
+        </nav>
+
+        <!-- Кнопка в шапке ведёт к форме в подвале -->
+        <a href="#footer" class="btn btn--small header__btn" data-scroll>Заказать</a>
+
+        <!-- Бургер-кнопка: три полоски рисуются спанами, анимация в CSS -->
+        <button class="burger" id="burger" aria-label="Меню"><span></span><span></span><span></span></button>
+      </div>
+    </header>
+
+    <!-- Выезжающая панель меню для мобильных (открывается по бургеру) -->
+    <nav class="mobile-nav" id="mobileNav">
+      <a href="#keep" class="mobile-nav__link" data-scroll>Что мы сохраняем</a>
+      <a href="#anim" class="mobile-nav__link" data-scroll>Анимации</a>
+      <a href="#works" class="mobile-nav__link" data-scroll>Работы</a>
+      <a href="#pricing" class="nav__link" data-scroll>Тарифы</a>
+      <a href="#footer" class="btn mobile-nav__btn" data-scroll>Заказать</a>
+    </nav>
+
+    <main>
+      <!-- ============ 1. HERO — первый экран ============ -->
+      <section class="hero" id="hero">
+        <!-- Плавающие сердечки: JS создаёт их автоматически внутри этого блока -->
+        <div class="hero__hearts" id="heroHearts" aria-hidden="true"></div>
+
+        <div class="container hero__inner">
+          <!-- Эффект печатной машинки: текст дописывает JS посимвольно -->
+          <h1 class="hero__title"><span id="typing"></span><span class="hero__cursor">|</span></h1>
+
+          <p class="hero__subtitle">
+            Мы превращаем ваши фотографии, видео и воспоминания в живые сайты-карточки — бережно и с любовью.
+          </p>
+
+          <div class="hero__actions">
+            <a href="#works" class="btn" data-scroll>Посмотреть работы</a>
+            <a href="#pricing" class="btn btn--ghost" data-scroll>Выбрать тариф</a>
+          </div>
+        </div>
+
+        <!-- Стрелка «листайте вниз» с мягкой анимацией -->
+        <a href="#keep" class="hero__scroll" data-scroll aria-label="Листайте вниз">↓</a>
+      </section>
+
+      <!-- ============ 2. ЧТО МЫ СОХРАНЯЕМ ============ -->
+      <!-- Карточки с 3D-наклоном при наведении (tilt-эффект в JS) -->
+      <section class="section keep" id="keep">
+        <div class="container">
+          <h2 class="section__title" data-reveal>Что мы сохраняем</h2>
+          <p class="section__subtitle" data-reveal>
+            Каждая история уникальна — мы бережно собираем её в единую страницу
+          </p>
+
+          <div class="keep__grid">
+            <!-- Карточка 1. data-tilt включает наклон при наведении.
+               Внутри .card__photo — заглушка-градиент.
+               Чтобы поставить своё фото: замените div на
+               <img src="..." alt="..." class="card__photo"> -->
+            <article class="card" data-tilt data-reveal>
+               <div class="card__photo card__photo--pink"></div>
+              <h3 class="card__title">Фотографии</h3>
+              <p class="card__text">Сохраните ваши фотографии навсегда</p>
+            </article>
+
+            <article class="card" data-tilt data-reveal>
+              <div class="card__photo card__photo--blue"></div>
+              <h3 class="card__title">Видео</h3>
+              <p class="card__text">Заглушка — короткое описание услуги</p>
+            </article>
+
+            <article class="card" data-tilt data-reveal>
+               <div class="card__photo card__photo--lilac"></div>
+              <h3 class="card__title">Истории</h3>
+              <p class="card__text">Заглушка — короткое описание услуги</p>
+            </article>
+
+            <article class="card" data-tilt data-reveal>
+              <div class="card__photo card__photo--coral"></div>
+              <h3 class="card__title">Свадьбы</h3>
+              <p class="card__text">Заглушка — короткое описание услуги</p>
+            </article>
+
+            <article class="card" data-tilt data-reveal>
+              <div class="card__photo card__photo--lemon"></div>
+              <h3 class="card__title">Годовщины</h3>
+              <p class="card__text">Заглушка — короткое описание услуги</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ 3. ВАРИАНТЫ АНИМАЦИЙ ============ -->
+      <!-- Три «живых» демо: параллакс, слайд-шоу, лента историй.
+         Каждое демо — мини-пример того, что можно встроить в сайт-карточку -->
+      <section class="section anim" id="anim">
+        <div class="container">
+          <h2 class="section__title" data-reveal>Живые страницы</h2>
+          <p class="section__subtitle" data-reveal>
+            Так могут оживать ваши фотографии — наведите курсор или просто подождите
+          </p>
+
+          <div class="anim__grid">
+            <!-- ДЕМО 1: параллакс — картинка следует за курсором внутри рамки -->
+            <div class="demo" data-reveal>
+              <div class="demo__frame demo__frame--parallax" id="parallaxDemo">
+                <!-- Внутренний слой двигается чуть медленнее курсора — глубина -->
+                <div class="demo__parallax-inner"></div>
+              </div>
+              <h3 class="demo__title">Параллакс</h3>
+              <p class="demo__text">Фотография дышит и следует за взглядом</p>
+            </div>
+
+            <!-- ДЕМО 2: слайд-шоу — кадры сменяют друг друга (CSS-анимация) -->
+            <div class="demo" data-reveal>
+              <div class="demo__frame demo__frame--slideshow">
+                <!-- Три кадра с разными градиентами-заглушками.
+                   Меняйте .demo__slide-1/2/3 в CSS на свои <img> -->
+                <div class="demo__slide demo__slide-1"></div>
+                <div class="demo__slide demo__slide-2"></div>
+                <div class="demo__slide demo__slide-3"></div>
+              </div>
+              <h3 class="demo__title">Слайд-шоу</h3>
+              <p class="demo__text">Мягкая смена кадров, как в кино</p>
+            </div>
+
+            <!-- ДЕМО 3: лента историй — фотографии в «полароидах» слегка покачиваются -->
+            <div class="demo" data-reveal>
+              <div class="demo__frame demo__frame--ribbon">
+                <div class="polaroid polaroid--1"></div>
+                <div class="polaroid polaroid--2"></div>
+                <div class="polaroid polaroid--3"></div>
+              </div>
+              <h3 class="demo__title">Лента историй</h3>
+              <p class="demo__text">Снимки в оживающих рамках — как семейный альбом</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ 4. ПРИМЕРЫ РАБОТ (превью) ============ -->
+      <!-- Карусель с перетаскиванием мышью/пальцем (drag-scroll в JS) -->
+      <section class="section works" id="works">
+        <div class="container">
+          <h2 class="section__title" data-reveal>Примеры работ</h2>
+          <p class="section__subtitle" data-reveal>Пролистайте галерею — она слушается ваших рук</p>
+        </div>
+
+        <!-- Карусель во всю ширину экрана, чтобы страницы «выходили» за края -->
+        <div class="carousel" id="carousel" data-reveal>
+          <!-- Карточка работы: .work__photo — заглушка-градиент.
+             Заглушки: название, пара, категория — замените на своё -->
+          <article class="work">
+            <div class="work__photo work__photo--1"></div>
+            <div class="work__info">
+              <span class="work__tag">Свадьба</span>
+              <h3 class="work__title">Название работы</h3>
+              <p class="work__pair">Имена пары</p>
+            </div>
+          </article>
+
+          <article class="work">
+            <div class="work__photo work__photo--2"></div>
+            <div class="work__info">
+              <span class="work__tag">Годовщина</span>
+              <h3 class="work__title">Название работы</h3>
+              <p class="work__pair">Имена пары</p>
+            </div>
+          </article>
+
+          <article class="work">
+            <div class="work__photo work__photo--3"></div>
+            <div class="work__info">
+              <span class="work__tag">Семейный альбом</span>
+              <h3 class="work__title">Название работы</h3>
+              <p class="work__pair">Имена пары</p>
+            </div>
+          </article>
+
+          <article class="work">
+            <div class="work__photo work__photo--5"></div>
+            <div class="work__info">
+              <span class="work__tag">История знакомства</span>
+              <h3 class="work__title">Название работы</h3>
+              <p class="work__pair">Имена пары</p>
+            </div>
+          </article>
+
+          <article class="work">
+            <div class="work__photo work__photo--6"></div>
+            <div class="work__info">
+              <span class="work__tag">Годовщина</span>
+              <h3 class="work__title">Название работы</h3>
+              <p class="work__pair">Имена пары</p>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <!-- ============ 5. ПРАЙС-ЛИСТ ============ -->
+      <!-- Три карточки тарифов с заглушками: название, описание, цена.
+         Средняя выделена как «популярная» классом pricing__card--popular -->
+      <section class="section pricing" id="pricing">
+        <div class="container">
+          <h2 class="section__title" data-reveal>Тарифы</h2>
+          <p class="section__subtitle" data-reveal>Выберите формат — остальное обсудим лично</p>
+
+          <div class="pricing__grid">
+            <!-- Тариф 1 -->
+            <article class="pricing__card" data-reveal>
+              <h3 class="pricing__name">Эконом</h3>
+              <p class="pricing__desc">Сайт - одностраничник, без видео. Анимации ограничены. Хост сайта - по договоренности </p>
+              <p class="pricing__price">— 1.990 —</p>
+              <a href="#footer" class="btn btn--ghost pricing__btn" data-scroll>Заказать</a>
+            </article>
+
+            <!-- Тариф 2 (популярный, выделен рамкой и меткой) -->
+            <article class="pricing__card pricing__card--popular" data-reveal>
+              <span class="pricing__label">Популярный</span>
+              <h3 class="pricing__name">Базовый</h3>
+              <p class="pricing__desc">Сайт - одностраничник. Анимации не ограничено. 2 видео. Возможность правок</p>
+              <p class="pricing__price">— 3.990 —</p>
+              <a href="#footer" class="btn pricing__btn" data-scroll>Заказать</a>
+            </article>
+
+            <!-- Тариф 3 -->
+            <article class="pricing__card" data-reveal>
+              <h3 class="pricing__name">Премиум</h3>
+              <p class="pricing__desc">В разработке...</p>
+              <p class="pricing__price">— N —</p>
+              <a href="#footer" class="btn btn--ghost pricing__btn" data-scroll>Заказать</a>
+            </article>
+             
+            <!--Уточнения-->
+              <article class="pricing__card primech" data-reveal>
+              <h3 class="pricing__name">Примечание:</h3>
+              <p class="pricing__desc">Цена может быть изменена в зависимости от запроса. Напишите нам и обсудим ваш проект.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- ============ 6. ОТЗЫВЫ ============ -->
+      <!-- Автокарусель: отзывы сменяют друг друга каждые 5 секунд (JS) -->
+      <section class="section reviews" id="reviews">
+        <div class="container">
+          <h2 class="section__title" data-reveal>Отзывы клиентов</h2>
+
+          <!-- Слайды. Тексты-заглушки — замените на реальные отзывы -->
+          <div class="reviews__slider" id="reviewsSlider" data-reveal>
+            <blockquote class="review is-active">
+              <p class="review__text">Отзывов пока что нет...</p>
+              <cite class="review__author">Помогите нам стать лучше</cite>
+            </blockquote>
+            <blockquote class="review">
+              <p class="review__text">Отзывов пока что нет...</p>
+              <cite class="review__author">Напишите отзыв в профиле Avito</cite>
+            </blockquote>
+            <blockquote class="review">
+              <p class="review__text">Отзывов пока что нет...</p>
+              <cite class="review__author">Или в сообществе Vkонтакте</cite>
+            </blockquote>
+          </div>
+
+          <!-- Точки-переключатели создаются автоматически в JS -->
+          <div class="reviews__dots" id="reviewsDots"></div>
+        </div>
+      </section>
+
+      <!-- ============ 7. ФИНАЛЬНЫЙ ПРИЗЫВ ============ -->
+      <section class="cta">
+        <div class="container cta__inner" data-reveal>
+          <h2 class="cta__title">Сохраните вашу историю вместе</h2>
+          <p class="cta__text">Расскажите о своих моментах — мы бережно превратим их в живую страницу</p>
+          <a href="#footer" class="btn btn--large" data-scroll>Написать нам</a>
+        </div>
+      </section>
+    </main>
+
+    <!-- ============ ПОДВАЛ (на каждой странице) ============ -->
+    <footer class="footer" id="footer">
+      <div class="container footer__grid">
+        <!-- Колонка 1: контакты. Заглушки — замените на свои данные -->
+        <div class="footer__col">
+          <h3 class="footer__heading">Контакты</h3>
+          <a href="tel:+70000000000" class="footer__link">+7 (920) 381-08-68</a>
+          <a href="mailto:mail@example.com" class="footer__link">yourhistory2244@gmail.com</a>
+          <div class="footer__socials">
+            <a href="#" class="footer__social" aria-label="Telegram">TG</a>
+            <a href="#" class="footer__social" aria-label="ВКонтакте">VK</a>
+          </div>
+        </div>
+
+        <!-- Колонка 2: навигация -->
+        <div class="footer__col">
+          <h3 class="footer__heading">Разделы</h3>
+          <a href="#keep" class="footer__link" data-scroll>Что мы сохраняем</a>
+          <a href="#works" class="footer__link" data-scroll>Работы</a>
+          <a href="#pricing" class="footer__link" data-scroll>Тарифы</a>
+        </div>
+
+        <!-- Колонка 3: форма обратной связи с валидацией (JS) -->
+        <div class="footer__col footer__col--form">
+          <h3 class="footer__heading">Написать нам</h3>
+          <form class="form" id="contactForm"  action="https://formspree.io/f/xeaaqydp"
+      method="POST" novalidate>
+            <input class="form__input" type="text" name="name" placeholder="Ваше имя" required />
+            <input class="form__input" type="email" name="email" placeholder="Email или телефон" required />
+            <textarea
+              class="form__input form__textarea"
+              name="message"
+              placeholder="Расскажите о вашей истории…"
+              required></textarea>
+            <button type="submit" class="btn form__btn">Отправить</button>
+            <!-- Сюда JS подставит сообщение об успехе или ошибке -->
+            <p class="form__status" id="formStatus"></p>
+          </form>
+        </div>
+      </div>
+
+      <!-- Нижняя строка подвала. Ссылку на политику подключите к своему файлу:
+         <a href="privacy.html">Политика конфиденциальности</a> -->
+      <div class="container footer__bottom">
+        <a href="pravicy.html" class="footer__policy">Политика конфиденциальности</a>
+        <p class="footer__copy">© 2026 Ваши Истории. Сделано с любовью</p>
+      </div>
+    </footer>
+
+    <!-- Скрипты сайта -->
+    <script src="main.js"></script>
+  </body>
+</html>

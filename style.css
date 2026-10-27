@@ -268,11 +268,11 @@ body {
   height: 150px; border-radius: 16px; margin-bottom: 18px;
   background-size: cover; background-position: center;
 }
-.card__photo--pink    { background-image: url(https://i.pinimg.com/736x/a9/94/1c/a9941c2d413d2d821896ed313c29ea1e.jpg); background-size: cover; background-position: center  }
-.card__photo--blue    { background-image: url(https://i.pinimg.com/originals/17/dd/7c/17dd7c2e69304c39765061a8bbdbe9d0.gif); background-position: center; background-size: cover; }
-.card__photo--lilac   { background-image: url(https://i.pinimg.com/736x/9a/7c/e4/9a7ce4d77e3e784bc53314a6b84a3b3e.jpg); background-size: cover; background-position: center }
-.card__photo--coral   { background-image: url(https://i.pinimg.com/1200x/bb/c2/fe/bbc2fe688ad7fdc2edcab7fd0720aff6.jpg); background-size: cover; background-position: center }
-.card__photo--lemon   { background-image: url(https://i.pinimg.com/1200x/e1/77/50/e17750a1b4a2d980f007a7dc67c92eac.jpg); background-size: cover; background-position: center  }
+.card__photo--pink    { background-image: url(images/image1.jpg); background-size: cover; background-position: center  }
+.card__photo--blue    { background-image: url(images/image2.gif); background-position: center; background-size: cover; }
+.card__photo--lilac   { background-image: url(images/image3.jpg); background-size: cover; background-position: center }
+.card__photo--coral   { background-image: url(images/image4.jpg); background-size: cover; background-position: center }
+.card__photo--lemon   { background-image: url(images/image5.jpg); background-size: cover; background-position: center  }
 
 .card__title {
   font-family: var(--font-title);
@@ -309,7 +309,7 @@ body {
 .demo__frame--parallax { background: var(--pink); }
 .demo__parallax-inner {
   position: absolute; inset: -30px; /* запас, чтобы при движении не было пустых краёв */
-  background-image: url(https://i.pinimg.com/736x/d0/11/30/d0113098bdf97fa4509af8695dceefcc.jpg); background-size: cover;
+  background-image: url(images/image6.jpg); background-size: cover;
   transition: transform .15s ease-out;
 }
 
@@ -321,9 +321,9 @@ body {
   opacity: 0;
   animation: slideShow 9s infinite;
 }
-.demo__slide-1 { background-image: url(https://i.pinimg.com/736x/6f/ce/05/6fce058f1325f27d16a043fdf4a0aff2.jpg); background-size: cover; }
-.demo__slide-2 { background-image: url(https://i.pinimg.com/1200x/3a/8d/a4/3a8da4d26ba86e865717ad687e9a8746.jpg); background-size: cover; animation-delay: 3s; }
-.demo__slide-3 { background-image: url(https://i.pinimg.com/736x/a7/cc/87/a7cc87a04fe720af9294d7c3ee760cea.jpg); background-size: cover;  animation-delay: 6s; }
+.demo__slide-1 { background-image: url(images/image7.jpg); background-size: cover; }
+.demo__slide-2 { background-image: url(images/image8.jpg); background-size: cover; animation-delay: 3s; }
+.demo__slide-3 { background-image: url(images/image9.jpg); background-size: cover;  animation-delay: 6s; }
 @keyframes slideShow {
   0%   { opacity: 0; }
   8%   { opacity: 1; }
@@ -352,11 +352,11 @@ body {
   height: 78%; margin: 8% 8% 0;
   border-radius: 3px;
 }
-.polaroid--1::after { background-image: url(https://i.pinimg.com/736x/6f/ce/05/6fce058f1325f27d16a043fdf4a0aff2.jpg); background-size: cover; }
+.polaroid--1::after { background-image: url(images/image7.jpg); background-size: cover; }
 .polaroid--2 { animation-delay: .7s; }
-.polaroid--2::after {  background-image: url(https://i.pinimg.com/1200x/46/36/72/46367229cace60f796e3e4e674c62e9b.jpg); background-size: cover; }
+.polaroid--2::after {  background-image: url(images/image10.jpg); background-size: cover; }
 .polaroid--3 { animation-delay: 1.4s; }
-.polaroid--3::after { background-image: url(https://i.pinimg.com/736x/fb/65/c1/fb65c11f8d767e6b9ee482124ef5d0be.jpg); background-size: cover; }
+.polaroid--3::after { background-image: url(images/image11.jpg); background-size: cover; }
 @keyframes sway {
   0%, 100% { transform: rotate(-4deg) translateY(0); }
   50%      { transform: rotate(4deg)  translateY(-8px); }

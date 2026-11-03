@@ -1,36 +1,15 @@
-/* ============================================================
-   ОСНОВНЫЕ СТИЛИ САЙТА «ВАШИ ИСТОРИИ»
-   Структура файла:
-   1) Переменные и сброс
-   2) Общие элементы (кнопки, заголовки)
-   3) Прелоадер
-   4) Шапка и меню
-   5) Hero
-   6) Что мы сохраняем
-   7) Демо-анимации
-   8) Карусель работ
-   9) Тарифы
-   10) Отзывы
-   11) CTA и подвал
-   12) Появление при скролле (reveal)
-   13) Адаптив (три брейкпоинта)
-   ============================================================ */
-
-/* ---------- 1. ПЕРЕМЕННЫЕ И СБРОС ---------- */
 :root {
-  /* Палитра: голубой, розовый, белый, сиреневый,
-     малиново-бурый, бургундий, лимонный, коралловый */
   --blue:      #9fd3e6;
   --pink:      #f9c5d5;
   --white:     #fffdf8;
   --lilac:     #c8b1e4;
-  --raspberry: #8a4a5e;   /* малиново-бурый */
-  --burgundy:  #6e2b45;   /* бургундий — тёмный акцент */
+  --raspberry: #8a4a5e;
+  --burgundy:  #6e2b45;
   --lemon:     #fdeea0;
   --coral:     #ff9f8e;
 
-  --text:   #4a3240;      /* тёплый тёмный текст */
-  --radius: 24px;         /* скругления блоков */
+  --text:   #4a3240;
+  --radius: 24px;
   --shadow: 0 10px 40px rgba(110, 43, 69, .12);
   --font-title: 'Cormorant Garamond', serif;
   --font-text:  'Jost', sans-serif;
@@ -38,17 +17,16 @@
 
 * { margin: 0; padding: 0; box-sizing: border-box; }
 
-html { scroll-behavior: smooth; } /* плавный скролл по якорям */
+html { scroll-behavior: smooth; }
 
 body {
   font-family: var(--font-text);
   font-weight: 300;
   color: var(--text);
   background: var(--white);
-  overflow-x: hidden; /* чтобы сердечки не вызывали горизонтальный скролл */
+  overflow-x: hidden;
 }
 
-/* ---------- 2. ОБЩИЕ ЭЛЕМЕНТЫ ---------- */
 .container {
   width: min(1140px, 90%);
   margin: 0 auto;
@@ -58,7 +36,7 @@ body {
 
 .section__title {
   font-family: var(--font-title);
-  font-size: clamp(2rem, 4.5vw, 3.2rem); /* размер тянется от экрана */
+  font-size: clamp(2rem, 4.5vw, 3.2rem);
   font-weight: 600;
   text-align: center;
   color: var(--burgundy);
@@ -71,7 +49,6 @@ body {
   opacity: .75;
 }
 
-/* Кнопка-пилюля с плавным «наплывом» цвета при наведении */
 .btn {
   display: inline-block;
   padding: 14px 36px;
@@ -90,7 +67,6 @@ body {
   transform: translateY(-3px);
   box-shadow: 0 12px 30px rgba(138, 74, 94, .35);
 }
-/* Призрачная кнопка — только рамка, заливается при наведении */
 .btn--ghost {
   background: transparent;
   color: var(--burgundy);
@@ -103,8 +79,6 @@ body {
 .btn--small { padding: 10px 24px; font-size: .9rem; }
 .btn--large { padding: 18px 48px; font-size: 1.1rem; }
 
-/* ---------- 3. ПРЕЛОАДЕР ---------- */
-/* Занимает весь экран, исчезает когда JS добавит класс is-hidden */
 .preloader {
   position: fixed; inset: 0; z-index: 100;
   display: flex; flex-direction: column;
@@ -114,7 +88,6 @@ body {
 }
 .preloader.is-hidden { opacity: 0; visibility: hidden; }
 
-/* Пульсирующее сердечко */
 .preloader__heart {
   font-size: 3rem; color: var(--burgundy);
   animation: pulse 1.2s ease-in-out infinite;
@@ -125,17 +98,15 @@ body {
 }
 .preloader__text { color: var(--burgundy); letter-spacing: .08em; }
 
-/* ---------- 4. ШАПКА И МЕНЮ ---------- */
 .header {
   position: fixed; top: 0; left: 0; right: 0; z-index: 50;
   padding: 14px 0;
   background: rgba(255, 253, 248, .65);
-  backdrop-filter: blur(12px);          /* эффект матового стекла */
+  backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
   box-shadow: 0 2px 20px rgba(110, 43, 69, .08);
   transition: padding .3s;
 }
-/* Когда страница проскроллена — шапка «сжимается» (JS добавляет is-scrolled) */
 .header.is-scrolled { padding: 8px 0; }
 
 .header__inner { display: flex; align-items: center; gap: 30px; }
@@ -154,7 +125,6 @@ body {
   color: var(--text); text-decoration: none;
   position: relative; padding: 4px 0;
 }
-/* Подчёркивание выезжает слева при наведении */
 .nav__link::after {
   content: ''; position: absolute; left: 0; bottom: 0;
   width: 0; height: 2px; background: var(--coral);
@@ -162,7 +132,6 @@ body {
 }
 .nav__link:hover::after { width: 100%; }
 
-/* Бургер: показываем только на мобильных */
 .burger {
   display: none;
   flex-direction: column; gap: 5px;
@@ -172,12 +141,10 @@ body {
   width: 26px; height: 2px; background: var(--burgundy);
   transition: transform .3s, opacity .3s;
 }
-/* Анимация бургера в крестик (класс is-open ставит JS) */
 .burger.is-open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
 .burger.is-open span:nth-child(2) { opacity: 0; }
 .burger.is-open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
-/* Мобильная панель меню: спрятана за правым краем, выезжает по классу is-open */
 .mobile-nav {
   position: fixed; top: 0; right: -100%; z-index: 40;
   width: min(320px, 80vw); height: 100vh;
@@ -192,7 +159,6 @@ body {
   font-size: 1.2rem;
 }
 
-/* ---------- 5. HERO ---------- */
 .hero {
   position: relative;
   min-height: 100vh;
@@ -200,7 +166,6 @@ body {
   align-items: center; justify-content: center;
   text-align: center;
   overflow: hidden;
-  /* Нежный градиент из четырёх базовых цветов */
   background: linear-gradient(135deg, var(--blue) 0%, var(--lilac) 35%, var(--pink) 70%, var(--white) 100%);
 }
 
@@ -211,7 +176,7 @@ body {
   font-size: clamp(2.4rem, 6.5vw, 4.6rem);
   font-weight: 600;
   color: var(--burgundy);
-  min-height: 1.2em; /* чтобы блок не прыгал во время «печати» */
+  min-height: 1.2em;
 }
 .hero__cursor { animation: blink 1s step-end infinite; color: var(--coral); }
 @keyframes blink { 50% { opacity: 0; } }
@@ -223,7 +188,6 @@ body {
 
 .hero__actions { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
 
-/* Стрелка вниз с мягким подпрыгиванием */
 .hero__scroll {
   position: absolute; bottom: 28px; z-index: 2;
   color: var(--burgundy); font-size: 1.6rem; text-decoration: none;
@@ -234,7 +198,6 @@ body {
   50%      { transform: translateY(10px); }
 }
 
-/* Плавающие сердечки (создаются в JS, стили задаёт класс .float-heart) */
 .hero__hearts { position: absolute; inset: 0; z-index: 1; }
 .float-heart {
   position: absolute; bottom: -40px;
@@ -245,7 +208,6 @@ body {
   to { transform: translateY(-110vh) rotate(360deg); opacity: 0; }
 }
 
-/* ---------- 6. ЧТО МЫ СОХРАНЯЕМ ---------- */
 .keep__grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -259,20 +221,19 @@ body {
   box-shadow: var(--shadow);
   text-align: center;
   transition: transform .2s, box-shadow .3s;
-  will-change: transform; /* подсказка браузеру для плавного tilt-эффекта */
+  will-change: transform;
 }
 .card:hover { box-shadow: 0 18px 50px rgba(110, 43, 69, .2); }
 
-/* Фото-заглушки: цветные градиенты. Меняйте на <img> при желании */
 .card__photo {
   height: 150px; border-radius: 16px; margin-bottom: 18px;
   background-size: cover; background-position: center;
 }
-.card__photo--pink    { background-image: url(images/image1.jpg); background-size: cover; background-position: center  }
-.card__photo--blue    { background-image: url(images/image2.gif); background-position: center; background-size: cover; }
-.card__photo--lilac   { background-image: url(images/image3.jpg); background-size: cover; background-position: center }
-.card__photo--coral   { background-image: url(images/image4.jpg); background-size: cover; background-position: center }
-.card__photo--lemon   { background-image: url(images/image5.jpg); background-size: cover; background-position: center  }
+.card__photo--pink    { background-image: url(images/image1.webp); background-size: cover; background-position: center  }
+.card__photo--blue    { background-image: url(images/image2.webp); background-position: center; background-size: cover; }
+.card__photo--lilac   { background-image: url(images/image3.webp); background-size: cover; background-position: center }
+.card__photo--coral   { background-image: url(images/image4.webp); background-size: cover; background-position: center }
+.card__photo--lemon   { background-image: url(images/image5.webp); background-size: cover; background-position: center  }
 
 .card__title {
   font-family: var(--font-title);
@@ -280,7 +241,6 @@ body {
 }
 .card__text { font-size: .95rem; opacity: .75; }
 
-/* ---------- 7. ДЕМО-АНИМАЦИИ ---------- */
 .anim__grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -289,7 +249,6 @@ body {
 
 .demo { text-align: center; }
 
-/* Общая «рамка» демо — как окно в альбоме */
 .demo__frame {
   position: relative;
   height: 220px;
@@ -304,26 +263,22 @@ body {
 }
 .demo__text { font-size: .92rem; opacity: .75; }
 
-/* ДЕМО 1: параллакс. Внутренний слой крупнее рамки,
-   JS двигает его навстречу курсору */
 .demo__frame--parallax { background: var(--pink); }
 .demo__parallax-inner {
-  position: absolute; inset: -30px; /* запас, чтобы при движении не было пустых краёв */
-  background-image: url(images/image6.jpg); background-size: cover;
+  position: absolute; inset: -30px;
+  background-image: url(images/image6.webp); background-size: cover;
   transition: transform .15s ease-out;
 }
 
-/* ДЕМО 2: слайд-шоу. Кадры лежат друг на друге,
-   каждый проявляется по очереди циклом 9 секунд */
 .demo__frame--slideshow { background: var(--lilac); }
 .demo__slide {
   position: absolute; inset: 0;
   opacity: 0;
   animation: slideShow 9s infinite;
 }
-.demo__slide-1 { background-image: url(images/image7.jpg); background-size: cover; }
-.demo__slide-2 { background-image: url(images/image8.jpg); background-size: cover; animation-delay: 3s; }
-.demo__slide-3 { background-image: url(images/image9.jpg); background-size: cover;  animation-delay: 6s; }
+.demo__slide-1 { background-image: url(images/image7.webp); background-size: cover; }
+.demo__slide-2 { background-image: url(images/image8.webp); background-size: cover; animation-delay: 3s; }
+.demo__slide-3 { background-image: url(images/image9.webp); background-size: cover;  animation-delay: 6s; }
 @keyframes slideShow {
   0%   { opacity: 0; }
   8%   { opacity: 1; }
@@ -332,7 +287,6 @@ body {
   100% { opacity: 0; }
 }
 
-/* ДЕМО 3: лента историй. Три «полароида» качаются с разным ритмом */
 .demo__frame--ribbon {
   background:
     radial-gradient(circle at 20% 30%, rgba(253,238,160,.5), transparent 40%),
@@ -346,39 +300,34 @@ body {
   box-shadow: 0 6px 16px rgba(110, 43, 69, .25);
   animation: sway 4s ease-in-out infinite;
 }
-/* Цветная «фотография» внутри полароида */
 .polaroid::after {
   content: ''; display: block;
   height: 78%; margin: 8% 8% 0;
   border-radius: 3px;
 }
-.polaroid--1::after { background-image: url(images/image7.jpg); background-size: cover; }
+.polaroid--1::after { background-image: url(images/image7.webp); background-size: cover; }
 .polaroid--2 { animation-delay: .7s; }
 .polaroid--2::after {  background-image: url(images/image10.jpg); background-size: cover; }
 .polaroid--3 { animation-delay: 1.4s; }
-.polaroid--3::after { background-image: url(images/image11.jpg); background-size: cover; }
+.polaroid--3::after { background-image: url(images/image11.webp); background-size: cover; }
 @keyframes sway {
   0%, 100% { transform: rotate(-4deg) translateY(0); }
   50%      { transform: rotate(4deg)  translateY(-8px); }
 }
 
-/* ---------- 8. КАРУСЕЛЬ РАБОТ ---------- */
-/* Горизонтальная лента: скроллится колесом, пальцем и перетаскиванием.
-   scroll-snap даёт мягкое «прилипание» карточек */
 .carousel {
   display: flex; gap: 24px;
   overflow-x: auto;
-  padding: 10px max(calc((100% - 1140px) / 2), 5%); /* выравнивание с контейнером */
+  padding: 10px max(calc((100% - 1140px) / 2), 5%);
   scroll-snap-type: x mandatory;
   cursor: grab;
-  /* Прячем полосу прокрутки — тянуть будем мышью/пальцем */
   scrollbar-width: none;
 }
 .carousel::-webkit-scrollbar { display: none; }
 .carousel.is-dragging { cursor: grabbing; scroll-snap-type: none; }
 
 .work {
-  flex: 0 0 300px;              /* фиксированная ширина карточки */
+  flex: 0 0 300px;
   scroll-snap-align: center;
   border-radius: var(--radius);
   overflow: hidden;
@@ -388,9 +337,8 @@ body {
 }
 .work:hover { transform: translateY(-8px); }
 
-/* Заглушки фото работ: 6 разных градиентов */
 .work__photo { height: 220px; transition: transform .5s; }
-.work:hover .work__photo { transform: scale(1.05); } /* лёгкий zoom */
+.work:hover .work__photo { transform: scale(1.05); }
 .work__photo--1 { background: linear-gradient(135deg, var(--pink),   var(--lilac)); }
 .work__photo--2 { background: linear-gradient(135deg, var(--blue),   var(--coral)); }
 .work__photo--3 { background: linear-gradient(135deg, var(--lemon),  var(--raspberry)); }
@@ -411,7 +359,6 @@ body {
 }
 .work__pair { font-size: .92rem; opacity: .7; }
 
-/* ---------- 9. ТАРИФЫ ---------- */
 .pricing__grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
@@ -429,7 +376,7 @@ body {
   transition: transform .3s, box-shadow .3s;
 }
 .pricing__card:hover {
-  transform: translateY(-10px);            /* карточка «всплывает» */
+  transform: translateY(-10px);
   box-shadow: 0 22px 60px rgba(110, 43, 69, .22);
 }
 
@@ -438,7 +385,6 @@ body {
   background: linear-gradient(160deg, #fff, var(--pink));
 }
 
-/* Метка «Популярный» на верхнем крае карточки */
 .pricing__label {
   position: absolute; top: -14px; left: 50%;
   transform: translateX(-50%);
@@ -462,15 +408,13 @@ body {
   margin: 16px 0 22px;
 }
 
-/* ---------- 10. ОТЗЫВЫ ---------- */
 .reviews {
   background: linear-gradient(135deg, var(--lemon), var(--pink));
-  border-radius: 40px 40px 0 0; /* мягкий «свод» сверху */
+  border-radius: 40px 40px 0 0;
 }
 
 .reviews__slider { max-width: 640px; margin: 0 auto; position: relative; }
 
-/* Отзывы лежат друг на друге; активный — виден */
 .review {
   position: absolute; inset: 0;
   opacity: 0; transform: translateY(14px);
@@ -501,7 +445,6 @@ body {
   background: var(--burgundy); transform: scale(1.3);
 }
 
-/* ---------- 11. CTA И ПОДВАЛ ---------- */
 .cta {
   padding: 90px 0;
   background: linear-gradient(135deg, var(--lilac), var(--pink));
@@ -551,7 +494,6 @@ body {
 }
 .footer__social:hover { background: var(--coral); transform: translateY(-4px); }
 
-/* Форма в подвале */
 .form { display: flex; flex-direction: column; gap: 12px; }
 .form__input {
   padding: 13px 18px;
@@ -564,7 +506,6 @@ body {
 }
 .form__input::placeholder { color: rgba(255, 255, 255, .55); }
 .form__input:focus { outline: none; border-color: var(--coral); background: rgba(255, 255, 255, .14); }
-/* Ошибка валидации: рамка становится коралловой (класс ставит JS) */
 .form__input.is-error { border-color: var(--coral); }
 .form__textarea { resize: vertical; min-height: 90px; }
 .form__btn { align-self: flex-start; }
@@ -580,9 +521,6 @@ body {
 .footer__policy { color: rgba(244, 232, 238, .7); text-decoration: underline; }
 .footer__copy { font-size: .9rem; opacity: .7; }
 
-/* ---------- 12. ПОЯВЛЕНИЕ ПРИ СКРОЛЛЕ ---------- */
-/* Элементы с data-reveal невидимы, пока JS не добавит is-visible,
-   когда блок попадает в область экрана */
 [data-reveal] {
   opacity: 0;
   transform: translateY(30px);
@@ -590,18 +528,13 @@ body {
 }
 [data-reveal].is-visible { opacity: 1; transform: none; }
 
-/* ---------- 13. АДАПТИВ ---------- */
-
-/* Планшеты: до 900px */
 @media (max-width: 900px) {
   .section { padding: 70px 0; }
   .footer__grid { grid-template-columns: 1fr 1fr; }
-  .footer__col--form { grid-column: 1 / -1; } /* форма на всю ширину */
+  .footer__col--form { grid-column: 1 / -1; }
 }
 
-/* Телефоны: до 640px */
 @media (max-width: 640px) {
-  /* Прячем десктопную навигацию, показываем бургер */
   .nav, .header__btn { display: none; }
   .burger { display: flex; margin-left: auto; }
 
@@ -615,7 +548,7 @@ body {
   .anim__grid { grid-template-columns: 1fr; }
   .demo__frame { height: 190px; }
 
-  .work { flex-basis: 250px; } /* чуть уже карточки в карусели */
+  .work { flex-basis: 250px; }
 
   .pricing__grid { grid-template-columns: 1fr; max-width: 340px; }
 
@@ -626,13 +559,10 @@ body {
   .form__btn { align-self: stretch; }
 }
 
-/* Очень узкие экраны: до 400px — карточки «что мы сохраняем» в одну колонку */
 @media (max-width: 400px) {
   .keep__grid { grid-template-columns: 1fr; }
 }
 
-/* Уважение к системной настройке «уменьшить движение»:
-   анимации гаснут для пользователей с чувствительностью к движению */
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: .01ms !important;
@@ -641,17 +571,11 @@ body {
   }
 }
 
-/* ============================================================
-   СТИЛИ СТРАНИЦЫ ПОЛИТИКИ КОНФИДЕНЦИАЛЬНОСТИ (privacy.html)
-   ============================================================ */
-
-/* Обёртка текста: узкая колонка для комфортного чтения */
 .policy__content {
-  max-width: 720px;      /* оптимальная ширина строки для чтения */
-  margin: 40px auto 0;   /* центрируем и отступ от заголовка */
+  max-width: 720px;
+  margin: 40px auto 0;
 }
 
-/* Дата редакции под заголовком */
 .policy__updated {
   text-align: center;
   opacity: .6;
@@ -659,7 +583,6 @@ body {
   margin-top: 8px;
 }
 
-/* Подзаголовки разделов: антиква, бургундий, с лёгким отступом сверху */
 .policy__heading {
   font-family: var(--font-title);
   font-size: 1.5rem;
@@ -667,21 +590,18 @@ body {
   margin: 34px 0 12px;
 }
 
-/* Абзацы текста: мягкий межстрочный интервал */
 .policy__text {
   line-height: 1.7;
   margin-bottom: 14px;
   opacity: .85;
 }
 
-/* Списки внутри политики с нежными маркерами */
 .policy__list {
   margin: 0 0 14px 22px;
   line-height: 1.7;
   opacity: .85;
 }
 
-/* Ссылки в тексте (почта, телефон): цвет с плавным переходом */
 .policy__link {
   color: var(--raspberry);
   text-decoration: underline;
@@ -689,18 +609,16 @@ body {
 }
 .policy__link:hover { color: var(--burgundy); }
 
-/* Кнопка «на главную» внизу страницы */
 .policy__back {
   display: block;
   width: max-content;
   margin: 44px auto 0;
 }
 
-/* Отступ сверху, чтобы шапка (position: fixed) не перекрывала заголовок */
 .policy { padding-top: 130px; }
 
-/* На мобильных уменьшаем верхний отступ — шапка тоньше */
 @media (max-width: 640px) {
   .policy { padding-top: 90px; }
   .policy__heading { font-size: 1.3rem; }
 }
+

@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Личная страница пары: от индексации прячем -->
+  <meta name="robots" content="noindex, nofollow">
+  <title>Алёна и Сергей | 30 лет. Жемчужная свадьба</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Jost:wght@200;300;400&display=swap"
+        rel="stylesheet" media="print" onload="this.media='all'">
+        <link rel="icon" href="images/logo.jpg">
+  <noscript>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Jost:wght@200;300;400&display=swap" rel="stylesheet">
+  </noscript>
+
+  <!-- Только свои стили: страница автономна -->
+  <link rel="stylesheet" href="anniversary.css">
+</head>
+<body>
+
+  <!-- Кнопка выхода на портфолио -->
+  <a href="index.html" class="home-link">На главную</a>
+
+  <!-- Небо страницы: цвет меняет JS по главам -->
+  <div class="sky" id="sky" data-phase="prologue" aria-hidden="true"></div>
+
+  <!-- Слой всплывающих жемчужин (создаёт anniversary.js) -->
+  <div class="pearls" id="pearls" aria-hidden="true"></div>
+
+  <!-- ============ ПРОЛОГ ============ -->
+  <section class="chapter chapter--prologue" id="prologue" data-sky="prologue">
+    <div class="chapter__inner">
+      <p class="prologue__eyebrow" data-reveal>14 июня 1996 — 14 июня 2026</p>
+
+      <!-- Перламутровый заголовок: по буквам пробегает блик -->
+      <h1 class="prologue__title shimmer" id="shimmerTitle" data-reveal>
+        Тридцать лет&nbsp;вместе
+      </h1>
+
+      <p class="prologue__names" data-reveal>Алёна и Сергей</p>
+
+      <p class="prologue__line" data-reveal>
+        Тридцать лет — как тридцать жемчужин на одной нити.<br>
+        Эта страница — наша нить.
+      </p>
+
+      <!-- Подпись о вымысле -->
+      <p class="disclaimer" data-reveal>История выдумана и не является реальной — пример работы студии</p>
+    </div>
+    <a href="#cotton" class="prologue__scroll" data-goto aria-label="Листайте вниз">↓</a>
+  </section>
+
+  <!-- ============ ГЛАВА 1: СИТЦЕВАЯ (1 ГОД) ============ -->
+  <!-- Тёплый розовый свет, свежесть первого года -->
+  <section class="chapter chapter--story chapter--cotton" id="cotton" data-sky="cotton">
+    <div class="chapter__inner">
+      <span class="chapter__badge" data-reveal>1 год · 1997</span>
+      <h2 class="chapter__title" data-reveal>Ситцевая</h2>
+
+      <p class="chapter__text" data-reveal>
+        Первый год пахнул краской из только что поклеенных обоев
+        и утренним кофе на двоих. Мы учились мелочам: чья очередь
+        вынести мусор, как молчать обидно, но недолго, и как
+        смеяться в полночь над тем, о чём утром не вспомнишь.
+      </p>
+      <p class="chapter__text" data-reveal>
+        Ситец нежен — так и мы тогда были: чуть неуверенно,
+        зато по-настоящему.
+      </p>
+
+      <!-- СЛАЙД-ШОУ: кадры сменяются сами, точки — навигация.
+           Кадры-заглушки; замените на <img> -->
+      <div class="slideshow" id="slideshow" data-reveal>
+        <div class="slideshow__frame">
+          <div class="slideshow__slide slideshow__slide--1 is-active"></div>
+          <div class="slideshow__slide slideshow__slide--2"></div>
+          <div class="slideshow__slide slideshow__slide--3"></div>
+          <div class="slideshow__slide slideshow__slide--4"></div>
+        </div>
+        <div class="slideshow__dots" id="slideshowDots"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ ГЛАВА 2: ДЕРЕВЯННАЯ (5 ЛЕТ) ============ -->
+  <!-- Тёплый янтарь, уют дома -->
+  <section class="chapter chapter--story chapter--wood" id="wood" data-sky="wood">
+    <div class="chapter__inner">
+      <span class="chapter__badge chapter__badge--wood" data-reveal>5 лет · 2001</span>
+      <h2 class="chapter__title" data-reveal>Деревянная</h2>
+
+      <p class="chapter__text" data-reveal>
+        К пятому году дом перестал быть квартирой: появились
+        скрипучая лестница на даче, стол, за которым выросли
+        царапины от первых «крестиков-ноликов», и полка, куда
+        ставили не книги, а память.
+      </p>
+      <p class="chapter__text" data-reveal>
+        Дерево — про то, что растёт медленно, но если его поливать,
+        становится домом.
+      </p>
+
+      <!-- ЛЕНТА НОВОСТЕЙ: перетаскивается мышью и пальцем —
+           как карусель работ на главной -->
+      <div class="feed" id="feed" data-reveal>
+        <article class="feed__card">
+          <div class="feed__photo feed__photo--1"></div>
+          <span class="feed__tag">Лето</span>
+          <p class="feed__caption">Заглушка: первая дача, рассвет</p>
+        </article>
+        <article class="feed__card">
+          <div class="feed__photo feed__photo--2"></div>
+          <span class="feed__tag">Дом</span>
+          <p class="feed__caption">Заглушка: новый стол — длинный, на всех</p>
+        </article>
+        <article class="feed__card">
+          <div class="feed__photo feed__photo--3"></div>
+          <span class="feed__tag">Семья</span>
+          <p class="feed__caption">Заглушка: момент, о котором знают все</p>
+        </article>
+        <article class="feed__card">
+          <div class="feed__photo feed__photo--4"></div>
+          <span class="feed__tag">Зима</span>
+          <p class="feed__caption">Заглушка: ёлка, которую выбрали вместе</p>
+        </article>
+        <article class="feed__card">
+          <div class="feed__photo feed__photo--5"></div>
+          <span class="feed__tag">Дороги</span>
+          <p class="feed__caption">Заглушка: поездка, изменившая многое</p>
+        </article>
+      </div>
+      <p class="feed__hint" data-reveal>Потяните ленту — она поддаётся</p>
+    </div>
+  </section>
+
+  <!-- ============ ГЛАВА 3: СЕРЕБРЯНАЯ (25 ЛЕТ) ============ -->
+  <!-- Холодный благородный блеск, искры -->
+  <section class="chapter chapter--story chapter--silver" id="silver" data-sky="silver">
+    <div class="chapter__inner">
+      <span class="chapter__badge chapter__badge--silver" data-reveal>25 лет · 2021</span>
+      <h2 class="chapter__title" data-reveal>Серебряная</h2>
+
+      <p class="chapter__text" data-reveal>
+        Четверть века. К этой дате мы поняли простое: любовь —
+        не про то, что сердце бьётся чаще. Она про то, что рядом
+        с этим человеком молчание бывает уютнее разговора.
+      </p>
+      <p class="chapter__text" data-reveal>
+        Серебро со временем не тускнеет — его можно только
+        запылить. Мы пыль сдували.
+      </p>
+
+      <!-- Слайд-шоу второй главы (тот же механизм, другой id) -->
+      <div class="slideshow" id="slideshowSilver" data-reveal>
+        <div class="slideshow__frame">
+          <div class="slideshow__slide slideshow__slide--5 is-active"></div>
+          <div class="slideshow__slide slideshow__slide--6"></div>
+          <div class="slideshow__slide slideshow__slide--7"></div>
+        </div>
+        <div class="slideshow__dots" id="slideshowSilverDots"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ ГЛАВА 4: ЖЕМЧУЖНАЯ (30 ЛЕТ) ============ -->
+  <section class="chapter chapter--story chapter--pearl" id="pearl" data-sky="pearl">
+    <div class="chapter__inner">
+      <span class="chapter__badge chapter__badge--pearl" data-reveal>30 лет · 2026</span>
+      <h2 class="chapter__title" data-reveal>Жемчужная</h2>
+
+      <p class="chapter__text" data-reveal>
+        Говорят, жемчуг растёт там, где море долго и терпеливо
+        перетирает боль в красоту. Наверное, и тридцать лет —
+        про это: из дней, из мелких ран и больших прощений
+        получилась неспешная, тёплая, настоящая жемчужина.
+      </p>
+      <p class="chapter__text" data-reveal>
+        Мы всё ещё держимся за руки. Просто теперь — чаще
+        на подъёме с дивана.
+      </p>
+
+      <!-- Большое фото главы (заглушка) -->
+      <figure class="chapter__figure" data-reveal>
+        <div class="chapter__photo chapter__photo--pearl" data-parallax></div>
+        <figcaption class="chapter__caption">Лето, которого ждали тридцать лет</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- ============ ФИНАЛ: НИТЬ И ОБЕЩАНИЕ ============ -->
+  <section class="chapter chapter--final" id="final" data-sky="finale">
+    <div class="chapter__inner">
+      <!-- НИТЬ ЖЕМЧУГА: 30 жемчужин, каждая = год.
+           Загораются по очереди, когда финал появляется на экране -->
+      <div class="pearl-string" id="pearlString" aria-label="Тридцать лет — тридцать жемчужин">
+        <!-- 30 жемчужин создаёт anniversary.js -->
+      </div>
+      <p class="pearl-string__hint" data-reveal>Тридцать лет — тридцать жемчужин</p>
+
+      <h2 class="final__title" data-reveal>И нить продолжается…</h2>
+      <p class="final__text" data-reveal>
+        Мы обещаем друг другу то же, что и в первый день:
+        смотреть в одну сторону, спорить о мелочах и никогда —
+        о главном. Следующая жемчужина уже растёт.
+      </p>
+
+      <!-- Росчерк-подпись, рисуется «пером» -->
+      <svg class="final__sign" id="sign" viewBox="0 0 220 60" aria-hidden="true">
+        <path d="M10 45 C 30 10, 50 10, 62 35 S 95 55, 110 30 S 145 10, 158 35 S 195 45, 210 20"
+              fill="none" stroke="currentColor" stroke-width="2.5"
+              stroke-linecap="round"/>
+      </svg>
+      <p class="final__names" data-reveal>Алёна &amp; Сергей</p>
+    </div>
+  </section>
+
+  <!-- Тихая подпись внизу -->
+  <footer class="anniversary-footer">
+    <a href="index.html" class="anniversary-footer__link">Сделано с любовью — Ваши Истории</a>
+  </footer>
+
+  <script src="anniversary.js" defer></script>
+</body>
+</html>

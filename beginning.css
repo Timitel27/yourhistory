@@ -1,0 +1,547 @@
+/* ============================================================
+   СТРАНИЦА «КАК ВСЁ НАЧАЛОСЬ» — стили (автономный файл)
+   Структура:
+   1) Переменные и база
+   2) Живой фон: пятна рассвета + лепестки
+   3) Главы и типографика
+   4) Пролог и счётчик
+   5) Глава «До встречи»
+   6) Мессенджер
+   7) Полароид с RGB-заглушкой
+   8) Финал, росчерк, кнопки, адаптив, доступность
+   ============================================================ */
+
+/* ---------- 1. ПЕРЕМЕННЫЕ И БАЗА ---------- */
+:root {
+  --cream:   #fff9f4;   /* тёплый крем — базовый светлый */
+  --ink:     #4a2a35;   /* тёплый тёмно-розовый текст */
+  --ink-soft:#7a5560;   /* приглушённый текст */
+  --blush:   #f2c4c9;   /* пудрово-розовый */
+  --peach:   #f7d9b8;   /* персик */
+  --lilac:   #d9c9ec;   /* сирень */
+  --rose:    #d96d85;   /* насыщенная роза — акцент */
+  --coral:   #e98a5f;   /* тёплый коралл */
+  --violet:  #8f6fae;   /* фиолетовый акцент */
+  --gold:    #c9a24b;   /* золото для деталей */
+
+  --font-title: 'Cormorant Garamond', serif;
+  --font-text:  'Jost', sans-serif;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: var(--font-text);
+  font-weight: 300;
+  color: var(--ink);
+  background: var(--cream);
+  overflow-x: hidden;
+  line-height: 1.65;
+}
+
+/* ---------- 2. ЖИВОЙ ФОН: ПЯТНА РАССВЕТА ---------- */
+/* Три больших размытых «облака» медленно плывут и дышат —
+   фон никогда не повторяется, страница всегда чуть разная */
+.aurora {
+  position: fixed; inset: 0; z-index: 0;
+  overflow: hidden;
+  background: linear-gradient(160deg, #fff6ef 0%, #fdeee6 45%, #f6e3ee 100%);
+}
+.aurora__blob {
+  position: absolute;
+  width: 60vmax; height: 60vmax;
+  border-radius: 50%;
+  filter: blur(90px);
+  opacity: .5;
+  animation: blobDrift 26s ease-in-out infinite alternate;
+}
+.aurora__blob--1 {
+  top: -25%; left: -15%;
+  background: radial-gradient(circle, rgba(242, 196, 201, .9), transparent 70%);
+}
+.aurora__blob--2 {
+  bottom: -30%; right: -20%;
+  background: radial-gradient(circle, rgba(217, 201, 236, .85), transparent 70%);
+  animation-delay: -9s;
+}
+.aurora__blob--3 {
+  top: 35%; left: 40%;
+  width: 40vmax; height: 40vmax;
+  background: radial-gradient(circle, rgba(247, 217, 184, .8), transparent 70%);
+  animation-delay: -17s;
+}
+@keyframes blobDrift {
+  from { transform: translate(0, 0) scale(1); }
+  to   { transform: translate(6vmax, -4vmax) scale(1.15); }
+}
+
+/* Лепестки: вместо жемчуга — мягкие лепестки с изгибом */
+.petals { position: fixed; inset: 0; z-index: 1; pointer-events: none; overflow: hidden; }
+.petal {
+  position: absolute; top: -40px;
+  width: 14px; height: 18px;
+  border-radius: 60% 40% 60% 40% / 70% 50% 70% 50%;
+  background: linear-gradient(140deg, #f6d5da, #eab6c4 60%, #d99db4);
+  opacity: .75;
+  animation: petalFall linear infinite;
+}
+@keyframes petalFall {
+  0%   { transform: translateY(0) translateX(0) rotate(0); }
+  50%  { transform: translateY(55vh) translateX(26px) rotate(200deg); }
+  100% { transform: translateY(115vh) translateX(-18px) rotate(420deg); }
+}
+
+/* ---------- 3. ГЛАВЫ И ТИПОГРАФИКА ---------- */
+.chapter {
+  position: relative; z-index: 2;
+  min-height: 100vh;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  padding: 14vh 6%;
+}
+.chapter__inner {
+  position: relative; z-index: 3;
+  max-width: 680px;
+  text-align: center;
+}
+.chapter__inner--wide { max-width: 860px; }
+
+.chapter__title {
+  font-family: var(--font-title);
+  font-size: clamp(2.6rem, 7vw, 4.6rem);
+  font-weight: 500;
+  color: var(--ink);
+  margin-bottom: 18px;
+}
+.chapter__subtitle {
+  font-size: 1.05rem;
+  color: var(--ink-soft);
+  margin-bottom: 34px;
+}
+.chapter__text {
+  font-size: 1.12rem;
+  line-height: 1.85;
+  color: var(--ink);
+  max-width: 560px;
+  margin: 0 auto 16px;
+}
+.chapter__text--after { margin-top: 34px; }
+.chapter__whisper {
+  margin-top: 30px;
+  font-family: var(--font-title);
+  font-style: italic;
+  font-size: 1.35rem;
+  color: var(--rose);
+}
+
+/* ---------- 4. ПРОЛОГ И СЧЁТЧИК ---------- */
+.prologue__eyebrow {
+  letter-spacing: .38em;
+  text-transform: uppercase;
+  font-size: .82rem;
+  color: var(--ink-soft);
+  margin-bottom: 26px;
+}
+.prologue__title {
+  font-family: var(--font-title);
+  font-size: clamp(2.8rem, 9vw, 5.4rem);
+  font-weight: 600;
+  line-height: 1.12;
+  color: var(--ink);
+}
+/* Перламутровый блик по буквам: текст «окрашен» бегущим градиентом */
+.shimmer {
+  background: linear-gradient(100deg,
+    var(--ink) 0%, var(--ink) 38%,
+    #fff2f4 46%, var(--rose) 50%, #fff2f4 54%,
+    var(--ink) 62%, var(--ink) 100%);
+  background-size: 250% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: shimmerSweep 4.5s ease-in-out infinite;
+}
+@keyframes shimmerSweep {
+  0%   { background-position: 120% 0; }
+  60%  { background-position: -40% 0; }
+  100% { background-position: -40% 0; }
+}
+.prologue__names {
+  font-family: var(--font-title);
+  font-size: 1.7rem;
+  color: var(--rose);
+  margin-top: 18px;
+}
+
+/* Счётчик времени знакомства: цифры на «стекле» */
+.timer {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 14px;
+  margin-top: 34px;
+  padding: 18px 34px;
+  border-radius: 24px;
+  background: rgba(255, 255, 255, .45);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(74, 42, 53, .12);
+  box-shadow: 0 18px 44px rgba(217, 109, 133, .16);
+}
+.timer__item span {
+  font-family: var(--font-title);
+  font-size: 2rem;
+  font-weight: 600;
+  color: var(--ink);
+  font-variant-numeric: tabular-nums; /* цифры не «прыгают» при смене */
+}
+.timer__item small {
+  display: block;
+  font-size: .72rem;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+}
+.timer__dot { color: var(--rose); font-size: 1.4rem; }
+.timer--big .timer__item span { font-size: 2.6rem; }
+.prologue__since {
+  margin-top: 16px;
+  font-size: .95rem;
+  color: var(--ink-soft);
+}
+
+/* Подпись о вымысле: маленькая честная табличка */
+.disclaimer {
+  display: inline-block;
+  margin-top: 26px;
+  padding: 8px 20px;
+  border-radius: 40px;
+  font-size: .78rem;
+  letter-spacing: .08em;
+  color: var(--ink-soft);
+  background: rgba(255, 255, 255, .4);
+  border: 1px dashed rgba(74, 42, 53, .3);
+}
+.disclaimer--footer { margin: 34px 0 0; }
+
+.prologue__scroll {
+  position: absolute; bottom: 30px;
+  font-size: 1.7rem;
+  color: var(--rose);
+  text-decoration: none;
+  animation: nudge 2.2s ease-in-out infinite;
+}
+@keyframes nudge {
+  0%, 100% { transform: translateY(0); opacity: .7; }
+  50%      { transform: translateY(10px); opacity: 1; }
+}
+
+/* ---------- 5. ГЛАВА «ДО ВСТРЕЧИ» ---------- */
+/* Два текста-близнеца: карточки смотрят друг на друга */
+.twins {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 26px;
+  margin-top: 36px;
+  text-align: left;
+}
+.twin {
+  padding: 28px 26px;
+  border-radius: 24px;
+  background: rgba(255, 255, 255, .5);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(74, 42, 53, .1);
+  box-shadow: 0 18px 44px rgba(217, 109, 133, .12);
+  transition: transform .4s ease, box-shadow .4s ease;
+}
+/* При наведении карточки слегка «разворачиваются» навстречу друг другу */
+.twin:first-child:hover { transform: rotate(-1.2deg) translateY(-6px); }
+.twin:last-child:hover  { transform: rotate(1.2deg) translateY(-6px); }
+.twin:hover { box-shadow: 0 26px 60px rgba(217, 109, 133, .22); }
+.twin__name {
+  font-family: var(--font-title);
+  font-size: 1.5rem;
+  color: var(--rose);
+  margin-bottom: 12px;
+}
+.twin p { font-size: .98rem; line-height: 1.7; color: var(--ink); margin-bottom: 10px; }
+
+/* ---------- 6. МЕССЕНДЖЕР ---------- */
+.phone {
+  max-width: 420px;
+  margin: 0 auto;
+  border-radius: 34px;
+  background: rgba(35, 20, 30, .92);
+  border: 1px solid rgba(255, 255, 255, .12);
+  box-shadow: 0 34px 80px rgba(74, 42, 53, .35);
+  overflow: hidden;
+}
+.phone__header {
+  padding: 16px 22px;
+  border-bottom: 1px solid rgba(255, 255, 255, .1);
+  text-align: left;
+}
+.phone__status {
+  font-size: .85rem;
+  letter-spacing: .04em;
+  color: #f2c4c9;
+}
+/* Точка «online» пульсирует */
+.phone__status::before {
+  content: '';
+  display: inline-block;
+  width: 8px; height: 8px;
+  border-radius: 50%;
+  background: #9be7a8;
+  margin-right: 10px;
+  animation: onlinePulse 2s ease-in-out infinite;
+}
+@keyframes onlinePulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(155, 231, 168, .5); }
+  50%      { box-shadow: 0 0 0 6px rgba(155, 231, 168, 0); }
+}
+.phone__chat {
+  min-height: 380px;
+  max-height: 480px;
+  overflow-y: auto;
+  padding: 22px 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  text-align: left;
+}
+/* Пузыри */
+.bubble {
+  max-width: 82%;
+  padding: 11px 16px;
+  border-radius: 18px;
+  font-size: .95rem;
+  line-height: 1.5;
+  animation: bubbleIn .45s cubic-bezier(.2, .9, .3, 1.2) both;
+}
+.bubble__time {
+  display: block;
+  margin-top: 5px;
+  font-size: .68rem;
+  opacity: .55;
+}
+/* Его сообщения — слева, холоднее */
+.bubble--he {
+  align-self: flex-start;
+  background: rgba(255, 255, 255, .12);
+  color: #f6eef2;
+  border-bottom-left-radius: 6px;
+}
+/* Её сообщения — справа, тёплый розовый */
+.bubble--she {
+  align-self: flex-end;
+  background: linear-gradient(135deg, #d96d85, #c1556f);
+  color: #fff;
+  border-bottom-right-radius: 6px;
+  box-shadow: 0 8px 22px rgba(217, 109, 133, .35);
+}
+@keyframes bubbleIn {
+  from { opacity: 0; transform: translateY(14px) scale(.92); }
+  to   { opacity: 1; transform: none; }
+}
+/* «Печатает…»: три точки прыгают волной */
+.phone__typing {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 10px 24px 16px;
+  font-size: .8rem;
+  color: rgba(246, 238, 242, .6);
+}
+.phone__typing span {
+  width: 6px; height: 6px;
+  border-radius: 50%;
+  background: rgba(246, 238, 242, .7);
+  animation: dotJump 1s ease-in-out infinite;
+}
+.phone__typing span:nth-child(2) { animation-delay: .15s; }
+.phone__typing span:nth-child(3) { animation-delay: .3s; }
+@keyframes dotJump {
+  0%, 100% { transform: translateY(0); opacity: .5; }
+  40%      { transform: translateY(-5px); opacity: 1; }
+}
+
+/* Кнопка «перечитать» */
+.btn-ghost {
+  margin-top: 30px;
+  padding: 12px 30px;
+  border-radius: 50px;
+  border: 1px solid rgba(217, 109, 133, .5);
+  background: transparent;
+  color: var(--rose);
+  font-family: var(--font-text);
+  font-size: .95rem;
+  letter-spacing: .06em;
+  cursor: pointer;
+  transition: background .3s, color .3s, transform .3s;
+}
+.btn-ghost:hover {
+  background: var(--rose);
+  color: #fff;
+  transform: translateY(-2px);
+}
+
+/* ---------- 7. ПОЛАРОИД С RGB-ЗАГЛУШКОЙ ---------- */
+.polaroid {
+  max-width: 380px;
+  margin: 0 auto 36px;
+  padding: 14px 14px 18px;
+  background: #fffdf8;
+  border-radius: 8px;
+  box-shadow: 0 26px 60px rgba(74, 42, 53, .25);
+  transform: rotate(-2.5deg);
+  transition: transform .5s ease;
+}
+.polaroid:hover { transform: rotate(0) scale(1.03); }
+.polaroid__photo {
+  aspect-ratio: 1 / 1;
+  border-radius: 4px;
+  overflow: hidden;
+}
+/* RGB-заглушка: живой градиент, который непрерывно переливается.
+   Замена на фото: background-image: url('img/date.jpg') поверх */
+.rgb-frame {
+  background: linear-gradient(120deg,
+    #f2c4c9, #d9c9ec 25%, #f7d9b8 50%, #a8d8ea 75%, #f2c4c9);
+  background-size: 400% 400%;
+  animation: rgbFlow 12s ease infinite;
+}
+@keyframes rgbFlow {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+/* «Проявление» кадра: белый слой + размытие уходят при появлении */
+.polaroid .polaroid__photo {
+  filter: blur(14px) brightness(2);
+  transform: scale(1.12);
+  transition: filter 2.2s ease, transform 2.2s ease;
+}
+.polaroid.is-developed .polaroid__photo {
+  filter: blur(0) brightness(1);
+  transform: scale(1);
+}
+.polaroid__caption {
+  margin-top: 14px;
+  font-family: 'Caveat', var(--font-title);
+  font-style: italic;
+  font-size: 1.15rem;
+  color: var(--ink-soft);
+}
+
+/* ---------- 8. ФИНАЛ И ПРОЧЕЕ ---------- */
+.chapter--moment .moment__quote {
+  font-family: var(--font-title);
+  font-style: italic;
+  font-size: clamp(1.7rem, 4.5vw, 2.8rem);
+  line-height: 1.4;
+  color: var(--ink);
+}
+.chapter--final { background: rgba(217, 109, 133, .06); }
+.final__title {
+  font-family: var(--font-title);
+  font-size: clamp(2.4rem, 6.5vw, 4rem);
+  font-weight: 500;
+  color: var(--ink);
+  margin-bottom: 26px;
+}
+.final__status {
+  display: inline-block;
+  margin: 26px 0 10px;
+  padding: 10px 26px;
+  border-radius: 50px;
+  background: linear-gradient(120deg, #d96d85, #8f6fae);
+  color: #fff;
+  font-size: .95rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  box-shadow: 0 14px 34px rgba(217, 109, 133, .35);
+}
+.final__text {
+  max-width: 520px;
+  margin: 20px auto 30px;
+  color: var(--ink);
+  line-height: 1.8;
+}
+.final__names {
+  font-family: var(--font-title);
+  font-size: 1.6rem;
+  color: var(--rose);
+  margin-top: 18px;
+}
+.final__sign {
+  width: 220px; height: 60px;
+  color: var(--rose);
+  margin-top: 8px;
+}
+.final__sign path { stroke-dasharray: 500; stroke-dashoffset: 500; }
+.final__sign.is-drawn path { animation: draw 2.4s ease forwards; }
+@keyframes draw { to { stroke-dashoffset: 0; } }
+
+.story-footer {
+  position: relative; z-index: 2;
+  text-align: center;
+  padding: 30px 0 40px;
+}
+.story-footer__link {
+  font-size: .85rem;
+  color: var(--ink-soft);
+  text-decoration: none;
+  transition: color .3s;
+}
+.story-footer__link:hover { color: var(--rose); }
+
+/* Появление блоков: только когда JS жив */
+html.js [data-reveal] {
+  opacity: 0;
+  transform: translateY(34px);
+  filter: blur(6px);
+  transition: opacity 1s ease, transform 1s ease, filter 1s ease;
+}
+html.js [data-reveal].is-visible { opacity: 1; transform: none; filter: blur(0); }
+
+.home-link {
+  position: fixed; top: 20px; left: 20px; z-index: 50;
+  padding: 10px 22px;
+  border-radius: 50px;
+  background: rgba(255, 255, 255, .5);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  color: var(--ink);
+  font-size: .9rem;
+  letter-spacing: .06em;
+  text-decoration: none;
+  border: 1px solid rgba(74, 42, 53, .18);
+  transition: background .3s, color .3s, transform .3s, box-shadow .3s;
+}
+.home-link:hover {
+  background: var(--rose);
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 10px 26px rgba(217, 109, 133, .35);
+}
+
+@media (max-width: 720px) {
+  .chapter { padding: 12vh 7%; }
+  .twins { grid-template-columns: 1fr; }
+  .timer { padding: 14px 20px; gap: 10px; }
+  .timer__item span { font-size: 1.5rem; }
+  .timer--big .timer__item span { font-size: 1.9rem; }
+  .phone__chat { min-height: 320px; max-height: 420px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+  }
+  html { scroll-behavior: auto; }
+}

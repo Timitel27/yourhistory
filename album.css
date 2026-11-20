@@ -1,0 +1,542 @@
+
+/* ============================================================
+   СТРАНИЦА «СЕМЕЙНЫЙ АЛЬБОМ» — стили (автономный файл)
+   Структура:
+   1) Переменные и база
+   2) Жемчужины
+   3) Главы и тема цветов
+   4) Карточки альбома
+   5) Модальное окно
+   6) Форма
+   7) Появление, кнопка «На главную», адаптив, доступность
+   ============================================================ */
+
+/* ---------- 1. ПЕРЕМЕННЫЕ И БАЗА ---------- */
+:root {
+  --bg-dark: #341e30;
+  --bg-mid: #2a1e2a;
+  --text-main: #ffffff;
+  --text-muted: #c5b8c5;
+  --accent-travel: #d4a373;   /* Путешествия — янтарь */
+  --accent-cottage: #8f9e7b;  /* Дача — оливковый */
+  --accent-kids: #8ddad6;     /* Дети — мята */
+  --accent-holidays: #f4a261; /* Праздники — тёплый апельсин */
+  --accent-home: #e0d5d5;     /* Дом — тёплый светлый */
+  --glass: rgba(255, 255, 255, 0.08);
+  --glass-border: rgba(255, 255, 255, 0.12);
+  --shadow-soft: 0 10px 30px rgba(0, 0, 0, 0.35);
+  --shadow-strong: 0 25px 50px rgba(0, 0, 0, 0.45);
+  --transition: all 0.35s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Jost', sans-serif;
+  color: var(--text-main);
+  background: var(--bg-dark);
+  overflow-x: hidden;
+  line-height: 1.6;
+}
+
+/* ---------- 2. ЖЕМЧУЖИНЫ ---------- */
+.pearls {
+  position: fixed; inset: 0; z-index: 0; pointer-events: none;
+  overflow: hidden;
+}
+.pearl {
+  position: absolute; bottom: -40px;
+  width: 16px; height: 16px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, #fff, #ddd 40%, transparent 70%);
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.3));
+  opacity: 0.6;
+  animation: pearlRise linear infinite;
+}
+@keyframes pearlRise {
+  0%   { transform: translateY(0) translateX(0) scale(1); opacity: 0.6; }
+  50%  { transform: translateY(-70vh) translateX(20px) scale(0.8); opacity: 0.4; }
+  100% { transform: translateY(-140vh) translateX(-12px) scale(0.6); opacity: 0.2; }
+}
+
+/* ---------- 3. ГЛАВЫ И ТЕМА ЦВЕТОВ ---------- */
+.chapter {
+  position: relative; z-index: 2;
+  min-height: 100vh;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  padding: 10vh 4%;
+}
+.chapter__inner {
+  position: relative; z-index: 3;
+  max-width: 960px;
+  width: 100%;
+  text-align: center;
+}
+.chapter__title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2.4rem, 6vw, 4.8rem);
+  font-weight: 500;
+  margin: 0 0 24px;
+  line-height: 1.1;
+  text-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+}
+.chapter__subtitle {
+  font-size: 1.1rem;
+  color: var(--text-muted);
+  max-width: 600px;
+  margin: 0 auto 40px;
+  line-height: 1.7;
+}
+
+/* Подпись о вымысле: маленькая честная табличка */
+.disclaimer {
+  display: inline-block;
+  margin-top: 26px;
+  padding: 8px 20px;
+  border-radius: 40px;
+  font-size: .78rem;
+  letter-spacing: .08em;
+  color: var(--ink-soft);
+  background: rgba(255, 255, 255, .4);
+  border: 1px dashed rgba(74, 42, 53, .3);
+}
+
+
+/* У каждой главы — свой акцентный цвет: подсвечивает
+   заголовки, рамки карточек и кнопки внутри главы */
+.chapter--travel   { --chapter-accent: var(--accent-travel); }
+.chapter--cottage  { --chapter-accent: var(--accent-cottage); }
+.chapter--kids     { --chapter-accent: var(--accent-kids); }
+.chapter--holidays { --chapter-accent: var(--accent-holidays); }
+.chapter--home     { --chapter-accent: var(--accent-home); }
+
+.chapter__title { color: var(--chapter-accent, var(--text-main)); }
+
+/* ---------- 4. КАРТОЧКИ АЛЬБОМА ---------- */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 28px;
+  margin-top: 32px;
+}
+.card {
+  position: relative;
+  overflow: hidden;
+  border-radius: 20px;
+  background: var(--glass);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--shadow-soft);
+  cursor: pointer;
+  transition: var(--transition);
+}
+.card:hover {
+  transform: translateY(-12px) scale(1.02);
+  box-shadow: var(--shadow-strong);
+  border-color: var(--chapter-accent);
+}
+.card__photo {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  background-size: cover;
+  background-position: center;
+  filter: brightness(0.9) contrast(1.1);
+  transition: var(--transition);
+  will-change: transform;
+}
+
+/* Заглушки-градиенты по темам. Замена на реальные фото:
+   .card--travel .card__photo { background-image: url('img/1.jpg'); } */
+.card--travel .card__photo   { background: linear-gradient(135deg, #d4a373, #a67c52); }
+.card--cottage .card__photo  { background: linear-gradient(135deg, #8f9e7b, #6b7a5f); }
+.card--kids .card__photo     { background: linear-gradient(135deg, #8ddad6, #6bcbdb); }
+.card--holidays .card__photo { background: linear-gradient(135deg, #f4a261, #d98829); }
+.card--home .card__photo     { background: linear-gradient(135deg, #e0d5d5, #b5a8a8); }
+
+/* Подпись всегда видна */
+.card__caption {
+  padding: 18px;
+  text-align: left;
+  background: rgba(0, 0, 0, 0.15);
+  backdrop-filter: blur(8px);
+  opacity: 1;
+  transition: var(--transition);
+}
+.card:hover .card__caption {
+  background: rgba(0, 0, 0, 0.25);
+}
+.card__year {
+  display: block;
+  font-size: 0.75rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--chapter-accent);
+  margin-bottom: 6px;
+}
+.card__title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.2rem;
+  color: var(--text-main);
+  margin-bottom: 6px;
+}
+.card__desc {
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+/* ---------- 5. МОДАЛЬНОЕ ОКНО ---------- */
+.modal-overlay {
+  position: fixed; inset: 0; z-index: 100;
+  background: rgba(0, 0, 0, 0.85);
+  display: flex; align-items: center; justify-content: center;
+  opacity: 0; visibility: hidden;
+  transition: opacity 0.4s ease, visibility 0.4s ease;
+}
+.modal-overlay.is-open {
+  opacity: 1; visibility: visible;
+}
+.modal {
+  position: relative;
+  width: 90%; max-width: 600px;
+  background: var(--glass);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--glass-border);
+  border-radius: 24px;
+  padding: 32px;
+  box-shadow: var(--shadow-strong);
+  transform: scale(0.95);
+  transition: transform 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+.modal-overlay.is-open .modal {
+  transform: scale(1);
+}
+.modal__photo {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  border-radius: 16px;
+  margin-bottom: 20px;
+  overflow: hidden;
+  position: relative;
+  background-size: cover;
+  background-position: center;
+}
+.modal__photo::after {
+  content: '';
+  position: absolute; inset: 0;
+  border-radius: 16px;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.4));
+  pointer-events: none;
+}
+.modal__title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.8rem;
+  color: var(--text-main);
+  margin-bottom: 8px;
+}
+.modal__desc {
+  color: var(--text-muted);
+  font-size: 1rem;
+}
+.modal__close {
+  position: absolute; top: 16px; right: 16px;
+  z-index: 2;
+  background: rgba(0, 0, 0, 0.4);
+  border: none;
+  color: var(--text-main);
+  font-size: 1.5rem;
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: var(--transition);
+}
+.modal__close:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: rotate(90deg);
+}
+
+/* ---------- 6. ФОРМА ---------- */
+.contact-form {
+  max-width: 560px;
+  width: 100%;
+  margin: 40px auto 0;
+  text-align: left;
+}
+.form__group { margin-bottom: 18px; }
+.form__input {
+  width: 100%;
+  padding: 16px 18px;
+  border-radius: 14px;
+  border: 1px solid var(--glass-border);
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--text-main);
+  font-family: inherit;
+  font-size: 1rem;
+  transition: var(--transition);
+}
+.form__input::placeholder { color: rgba(197, 184, 197, 0.6); }
+.form__input:focus {
+  outline: none;
+  border-color: var(--accent-home);
+  box-shadow: 0 0 0 4px rgba(255, 255, 255, 0.06);
+}
+.form__input.is-error {
+  border-color: #ff9d8c;
+  box-shadow: 0 0 0 3px rgba(255, 157, 140, 0.2);
+}
+.form__btn {
+  width: 100%;
+  padding: 16px;
+  border-radius: 14px;
+  border: none;
+  background: var(--accent-home);
+  color: var(--bg-dark);
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 600;
+  font-size: 1.15rem;
+  cursor: pointer;
+  transition: var(--transition);
+}
+.form__btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 28px rgba(224, 213, 213, 0.25);
+}
+.form__error {
+  margin-top: 12px;
+  font-size: 0.85rem;
+  color: #ffaaaa;
+  text-align: center;
+  min-height: 1.2em;
+}
+.final__hint {
+  margin-top: 24px;
+  font-size: 0.9rem;
+  color: var(--text-muted);
+}
+
+/* ---------- 7. ПОЯВЛЕНИЕ, КНОПКА, АДАПТИВ ---------- */
+/* Прячем элементы только когда JS жив — класс js ставит album.js */
+html.js [data-reveal] {
+  opacity: 0;
+  transform: translateY(40px);
+  filter: blur(6px);
+  transition: opacity 0.8s ease, transform 0.8s ease, filter 0.8s ease;
+}
+html.js [data-reveal].is-visible {
+  opacity: 1; transform: none; filter: blur(0);
+}
+
+.home-link {
+  position: fixed; top: 20px; left: 20px; z-index: 50;
+  padding: 10px 20px;
+  border-radius: 50px;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  color: var(--text-main);
+  text-decoration: none;
+  border: 1px solid var(--glass-border);
+  font-size: 0.9rem;
+  letter-spacing: 0.06em;
+  transition: var(--transition);
+}
+.home-link:hover {
+  background: var(--accent-home);
+  color: var(--bg-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 26px rgba(0, 0, 0, 0.35);
+}
+
+@media (max-width: 768px) {
+  .chapter { padding: 8vh 3%; }
+  .grid { gap: 18px; }
+  .card__caption { padding: 14px; transform: none; opacity: 1; }
+  /* На тач-экранах нет hover: подписи всегда видимы */
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  html { scroll-behavior: auto; }
+}
+
+/* ============================================================
+   8. НАВИГАЦИЯ ПО РАЗДЕЛАМ
+   ============================================================ */
+
+/* Отступ для секций при скролле к якорю (высота панели) */
+.chapter { scroll-margin-top: 90px; }
+
+/* Контейнер панели: фиксирован, по центру, лёгкая прозрачность наверху */
+.section-nav {
+  position: fixed;
+  top: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 49;
+  opacity: 0.85;
+  transition: opacity 0.4s ease;
+}
+.section-nav.is-scrolled {
+  opacity: 1;
+}
+
+/* Бургер скрыт на десктопе */
+.section-nav__burger { display: none; }
+
+/* «Пилюля» из матового стекла */
+.section-nav__menu {
+  display: flex;
+  list-style: none;
+  gap: 4px;
+  padding: 8px 18px;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 50px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+}
+
+/* Пункты меню */
+.section-nav__link {
+  position: relative;
+  display: inline-block;
+  padding: 6px 11px;
+  font-family: 'Jost', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 300;
+  color: var(--text-muted);
+  text-decoration: none;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+  transition: color 0.3s ease, transform 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* Акцентный цвет каждой главы через CSS-переменную --nav-accent */
+.section-nav__link[data-section="prologue"]  { --nav-accent: var(--text-muted); }
+.section-nav__link[data-section="travel"]    { --nav-accent: var(--accent-travel); }
+.section-nav__link[data-section="cottage"]   { --nav-accent: var(--accent-cottage); }
+.section-nav__link[data-section="kids"]      { --nav-accent: var(--accent-kids); }
+.section-nav__link[data-section="holidays"]  { --nav-accent: var(--accent-holidays); }
+.section-nav__link[data-section="home"]      { --nav-accent: var(--accent-home); }
+.section-nav__link[data-section="final"]     { --nav-accent: var(--text-muted); }
+
+/* Hover: акцент + лёгкое поднятие */
+.section-nav__link:hover {
+  color: var(--nav-accent);
+  transform: translateY(-2px);
+}
+
+/* Активный пункт */
+.section-nav__link.is-active {
+  color: var(--nav-accent);
+}
+
+/* Анимированное подчёркивание — «выезжает» слева направо */
+.section-nav__link::after {
+  content: '';
+  position: absolute;
+  bottom: 2px;
+  left: 11px;
+  right: 11px;
+  height: 1.5px;
+  background: var(--nav-accent);
+  border-radius: 1px;
+  transform: scaleX(0);
+  transform-origin: left center;
+  transition: transform 0.35s cubic-bezier(0.25, 1, 0.5, 1);
+}
+.section-nav__link.is-active::after {
+  transform: scaleX(1);
+}
+
+/* Служебные пункты (Пролог, Финал) — приглушённее */
+.section-nav__link--muted {
+  opacity: 0.75;
+}
+
+/* ---------- Мобильная навигация (бургер + дропдаун) ---------- */
+@media (max-width: 768px) {
+  .section-nav {
+    top: 14px;
+    left: auto;
+    right: 14px;
+    transform: none;
+  }
+
+  /* Кнопка-бургер 44×44px, стекло */
+  .section-nav__burger {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    background: rgba(255, 255, 255, 0.08);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 50%;
+    cursor: pointer;
+    position: relative;
+    z-index: 2;
+  }
+  .section-nav__burger span {
+    display: block;
+    width: 18px;
+    height: 2px;
+    background: var(--text-main);
+    border-radius: 1px;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+  }
+
+  /* Бургер → крестик при открытом меню */
+  .section-nav__burger.is-open span:nth-child(1) {
+    transform: translateY(7px) rotate(45deg);
+  }
+  .section-nav__burger.is-open span:nth-child(2) {
+    opacity: 0;
+  }
+  .section-nav__burger.is-open span:nth-child(3) {
+    transform: translateY(-7px) rotate(-45deg);
+  }
+
+  /* Выпадающее вертикальное меню */
+  .section-nav__menu {
+    position: absolute;
+    top: 52px;
+    right: 0;
+    flex-direction: column;
+    gap: 2px;
+    padding: 14px 18px;
+    border-radius: 20px;
+    opacity: 0;
+    transform: translateY(-10px);
+    pointer-events: none;
+    transition: opacity 0.3s ease, transform 0.3s cubic-bezier(0.25, 1, 0.5, 1);
+  }
+  .section-nav__menu.is-open {
+    opacity: 1;
+    transform: translateY(0);
+    pointer-events: auto;
+  }
+
+  .section-nav__link {
+    display: block;
+    padding: 8px 14px;
+  }
+  .section-nav__link::after {
+    left: 14px;
+    right: 14px;
+    bottom: 4px;
+  }
+}

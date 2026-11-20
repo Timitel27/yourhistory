@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- noindex: это личная страница пары, поисковикам её показывать не нужно -->
+  <meta name="robots" content="noindex, nofollow">
+  <title>Марина и Дмитрий | Наша история</title>
+
+  <!-- Те же шрифты, что на всём сайте, но грузим асинхронно (скорость) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Jost:wght@200;300;400&display=swap"
+        rel="stylesheet" media="print" onload="this.media='all'">
+  <link rel="icon" href="images/logo.jpg">
+  <noscript>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Jost:wght@200;300;400&display=swap" rel="stylesheet">
+  </noscript>
+
+  <!-- Только собственные стили страницы: style.css не подключаем,
+       чтобы свадебная страница была «вещью в себе» -->
+  <link rel="stylesheet" href="wedding.css">
+</head>
+<body>
+
+  <!-- ============ КНОПКА «НА ГЛАВНУЮ» ============ -->
+  <!-- position: fixed — всегда видна в углу при любом скролле.
+       z-index: 50 — поверх неба, лепестков и текста -->
+  <a href="index.html" class="home-link">На главную</a>
+  
+  <!-- ============ НЕБО СТРАНИЦЫ ============ -->
+  <!-- Фиксированный слой под всем контентом. Его цвет плавно меняет
+       wedding.js, когда читатель переходит от главы к главе:
+       рассвет → день → закат → звёздная ночь. Это и есть «вау»-основа -->
+  <div class="sky" id="sky" aria-hidden="true"></div>
+
+  <!-- Слой падающих лепестков (создаётся в wedding.js) -->
+  <div class="petals" id="petals" aria-hidden="true"></div>
+
+  <!-- ============ ГЛАВА 0: ПРОЛОГ (первый экран) ============ -->
+  <section class="chapter chapter--intro" id="intro"
+           data-sky="intro">
+    <div class="chapter__inner">
+      <!-- Дата свадьбы — заглушка, поменяйте на реальную -->
+      <p class="prologue__date" data-reveal>25 июля 2009</p>
+
+      <!-- Имена пары появляются по буквам (wedding.js) -->
+     <h1 class="prologue__names" id="names" aria-label="Анна и Дмитрий">Марина| &amp; |Дмитрий</h1>
+
+      <p class="prologue__line" data-reveal>
+        Это страница одной истории — нашей истории
+      </p>
+
+      <!-- Подпись о вымысле -->
+      <p class="disclaimer" data-reveal>История выдумана и не является реальной — пример работы студии</p>
+      
+    </div>
+
+    <!-- Подсказка «листайте»: пульсирующая стрелка -->
+    <a href="#together" class="prologue__scroll" data-goto aria-label="Листайте вниз">↓</a>
+  </section>
+
+  <!-- ============ ГЛАВА 1: МЫ ВМЕСТЕ УЖЕ… ============ -->
+  <!-- Живой счётчик с момента свадьбы. Дата — в data-date,
+       формат ГГГГ-ММ-ДДЧЧ:ММ:СС. Если дата в будущем,
+       счётчик сам превратится в «до свадьбы осталось» -->
+  <section class="chapter chapter--timer" id="together" data-sky="day">
+    <div class="chapter__inner">
+      <p class="together__eyebrow" data-reveal>Мы вместе уже</p>
+
+      <div class="together__counter" id="togetherCounter" data-date="2009-10-16T21:00:00">
+        <div class="together__unit">
+          <span class="together__num" id="tDays">—</span>
+          <span class="together__label">дней</span>
+        </div>
+        <div class="together__unit">
+          <span class="together__num" id="tHours">—</span>
+          <span class="together__label">часов</span>
+        </div>
+        <div class="together__unit">
+          <span class="together__num" id="tMinutes">—</span>
+          <span class="together__label">минут</span>
+        </div>
+        <div class="together__unit">
+          <span class="together__num" id="tSeconds">—</span>
+          <span class="together__label">секунд</span>
+        </div>
+      </div>
+
+      <!-- Строка появляется, когда счётчик уже тикает -->
+      <p class="together__note" data-reveal>
+        I Love You
+      </p>
+    </div>
+  </section>
+
+  <!-- ============ ГЛАВЫ ИСТОРИИ ============ -->
+  <!-- Каждая глава — полный экран: фото + слово-заголовок + текст.
+       data-sky задаёт цвет неба для этой главы.
+       Фото-заглушки — градиенты: замените div.chapter__photo
+       на <img src="..." alt="..." class="chapter__photo"> -->
+  <section class="chapter chapter--story" id="ch1" data-sky="sunset">
+    <figure class="chapter__figure" data-reveal>
+      <div class="chapter__photo chapter__photo--1" data-parallax></div>
+      <figcaption class="chapter__caption">Глава первая</figcaption>
+    </figure>
+    <div class="chapter__inner">
+      <h2 class="chapter__title" data-reveal>Тот самый день</h2>
+      <p class="chapter__text" data-reveal>
+        Заглушка рассказа: как всё началось. 3–4 предложения,
+        написанные так, будто их произносят вслух.
+      </p>
+    </div>
+  </section>
+
+  <section class="chapter chapter--story" id="ch2" data-sky="dusk">
+    <figure class="chapter__figure chapter__figure--right" data-reveal>
+      <div class="chapter__photo chapter__photo--2" data-parallax></div>
+      <figcaption class="chapter__caption">Глава вторая</figcaption>
+    </figure>
+    <div class="chapter__inner">
+      <h2 class="chapter__title" data-reveal>Годы, что сделали нас</h2>
+      <p class="chapter__text" data-reveal>
+        Заглушка рассказа: о пути, который прошли вдвоём.
+      </p>
+    </div>
+  </section>
+
+  <section class="chapter chapter--story" id="ch3" data-sky="night">
+    <figure class="chapter__figure" data-reveal>
+      <div class="chapter__photo chapter__photo--3" data-parallax></div>
+      <figcaption class="chapter__caption">Глава третья</figcaption>
+    </figure>
+    <div class="chapter__inner">
+      <h2 class="chapter__title" data-reveal>Свадьба</h2>
+      <p class="chapter__text" data-reveal>
+        Заглушка рассказа: самый главный день, каким он был.
+      </p>
+    </div>
+  </section>
+
+  <!-- ============ ФИНАЛ ============ -->
+  <section class="chapter chapter--final" id="final" data-sky="stars">
+    <div class="chapter__inner">
+      <h2 class="final__title" data-reveal>И это только начало…</h2>
+      <p class="final__text" data-reveal>
+        Заглушка: финальная фраза пары — обещание, шутка или клятва
+      </p>
+      <!-- Подпись-росчерк появляется «письмом пером» (CSS-анимация stroke) -->
+      <svg class="final__sign" id="sign" viewBox="0 0 220 60" aria-hidden="true">
+        <!-- Рисуем слово-росчерк простым путём; при появлении
+             анимация stroke-dashoffset «прорисовывает» его -->
+        <path d="M10 45 C 30 10, 50 10, 62 35 S 95 55, 110 30 S 145 10, 158 35 S 195 45, 210 20"
+              fill="none" stroke="currentColor" stroke-width="2.5"
+              stroke-linecap="round"/>
+      </svg>
+      <p class="final__names" data-reveal>Марина &amp; Дмитрий</p>
+    </div>
+  </section>
+
+  <!-- Минималистичная подпись внизу: ссылка на основное портфолио -->
+  <footer class="wedding-footer">
+    <a href="index.html" class="wedding-footer__link">Сделано с любовью — Ваши Истории</a>
+  </footer>
+
+  <!-- Скрипт только этой страницы -->
+  <script src="wedding.js" defer></script>
+</body>
+</html>

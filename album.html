@@ -1,0 +1,270 @@
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Семейный альбом | Моменты, которые мы храним</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Jost:wght@200;300;400;500&display=swap"
+        rel="stylesheet" media="print" onload="this.media='all'">
+  <link rel="icon" href="images/logo.jpg">
+        <noscript>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
+  </noscript>
+
+  <!-- Cтили -->
+  <link rel="stylesheet" href="album.css">
+</head>
+<body>
+
+  <a href="index.html" class="home-link">На главную</a>
+
+  <!-- ===== НАВИГАЦИЯ ПО РАЗДЕЛАМ ===== -->
+  <nav class="section-nav" id="sectionNav" aria-label="Разделы альбома">
+    <button class="section-nav__burger" id="navBurger"
+            aria-expanded="false" aria-controls="navMenu" aria-label="Открыть меню">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <ul class="section-nav__menu" id="navMenu">
+      <li><a href="#prologue" class="section-nav__link section-nav__link--muted" data-section="prologue">Пролог</a></li>
+      <li><a href="#travel" class="section-nav__link" data-section="travel">Путешествия</a></li>
+      <li><a href="#cottage" class="section-nav__link" data-section="cottage">Дача</a></li>
+      <li><a href="#kids" class="section-nav__link" data-section="kids">Дети</a></li>
+      <li><a href="#holidays" class="section-nav__link" data-section="holidays">Праздники</a></li>
+      <li><a href="#home" class="section-nav__link" data-section="home">Дом</a></li>
+      <li><a href="#final" class="section-nav__link section-nav__link--muted" data-section="final">Финал</a></li>
+    </ul>
+  </nav>
+
+  <!-- Слой всплывающих жемчужин (создаёт album.js) -->
+  <div class="pearls" id="pearls" aria-hidden="true"></div>
+
+  <!-- ============ ПРОЛОГ ============ -->
+  <section class="chapter" id="prologue">
+    <div class="chapter__inner">
+      <h1 class="chapter__title" data-reveal>Семейный альбом</h1>
+      <p class="chapter__subtitle" data-reveal>
+        Тематические главы. Моменты, которые мы храним.<br>
+        Листайте — и вспоминайте вместе с нами.
+      </p>
+      <!-- Подпись о вымысле -->
+      <p class="disclaimer" data-reveal>История выдумана и не является реальной — пример работы студии</p>
+    
+    </div>
+  </section>
+
+  <!-- ============ ГЛАВА 1: ПУТЕШЕСТВИЯ ============ -->
+  <section class="chapter chapter--travel" id="travel">
+    <div class="chapter__inner">
+      <h2 class="chapter__title" data-reveal>Путешествия</h2>
+      <p class="chapter__subtitle" data-reveal>
+        Горы, море, поезда и рассветы.<br>
+        Моменты, когда весь мир — только для нас.
+      </p>
+      <div class="grid" data-reveal>
+        <article class="card card--travel" data-parallax>
+          <div class="card__photo"></div>
+          <div class="card__caption">
+            <span class="card__year">2017</span>
+            <h3 class="card__title">Горы</h3>
+            <p class="card__desc">Тот самый рассвет на вершине, когда кажется, что весь мир у твоих ног.</p>
+          </div>
+        </article>
+        <article class="card card--travel" data-parallax>
+          <div class="card__photo"></div>
+          <div class="card__caption">
+            <span class="card__year">2019</span>
+            <h3 class="card__title">Море</h3>
+            <p class="card__desc">Тёплый песок, солёный ветер и бесконечный горизонт.</p>
+          </div>
+        </article>
+        <article class="card card--travel" data-parallax>
+          <div class="card__photo"></div>
+          <div class="card__caption">
+            <span class="card__year">2021</span>
+            <h3 class="card__title">Поезд</h3>
+            <p class="card__desc">Стук колёс, чай в подстаканнике и разговоры до утра.</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ ГЛАВА 2: ДАЧА ============ -->
+  <section class="chapter chapter--cottage" id="cottage">
+    <div class="chapter__inner">
+      <h2 class="chapter__title" data-reveal>Дача</h2>
+      <p class="chapter__subtitle" data-reveal>
+        Огород, шашлыки и вечерние посиделки у костра.<br>
+        Простые радости, которые мы так любим.
+      </p>
+      <div class="grid" data-reveal>
+        <article class="card card--cottage" data-parallax>
+          <div class="card__photo"></div>
+          <div class="card__caption">
+            <span class="card__year">2018</span>
+            <h3 class="card__title">Огород</h3>
+            <p class="card__desc">Первый урожай: помидоры, огурцы и чувство гордости за каждый плод.</p>
+          </div>
+        </article>
+        <article class="card card--cottage" data-parallax>
+          <div class="card__photo"></div>
+          <div class="card__caption">
+            <span class="card__year">2020</span>
+            <h3 class="card__title">Шашлыки</h3>
+            <p class="card__desc">Дым, специи и смех до слёз — вот что такое идеальный выходной.</p>
+          </div>
+        </article>
+        <article class="card card--cottage" data-parallax>
+          <div class="card__photo"></div>
+          <div class="card__caption">
+            <span class="card__year">2022</span>
+            <h3 class="card__title">Костёр</h3>
+            <p class="card__desc">Тёплые пледы, горячий чай и истории, которые хочется слушать снова и снова.</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ ГЛАВА 3: ДЕТИ ============ -->
+  <section class="chapter chapter--kids" id="kids">
+    <div class="chapter__inner">
+      <h2 class="chapter__title" data-reveal>Дети</h2>
+      <p class="chapter__subtitle" data-reveal>
+        Первые шаги, смешные фразы и бесконечные «почему».<br>
+        Самые искренние моменты нашей жизни.
+      </p>
+      <div class="grid" data-reveal>
+        <article class="card card--kids" data-parallax>
+          <div class="card__photo"></div>
+          <div class="card__caption">
+            <span class="card__year">2020</span>
+            <h3 class="card__title">Первый шаг</h3>
+            <p class="card__desc">Тот самый момент, когда сердце замирает от счастья.</p>
+          </div>
+        </article>
+        <article class="card card--kids" data-parallax>
+          <div class="card__photo"></div>
+          <div class="card__caption">
+            <span class="card__year">2021</span>
+            <h3 class="card__title">Смешные фразы</h3>
+            <p class="card__desc">«Мама, а почему небо не падает?» — и ты понимаешь, что мир снова стал волшебным.</p>
+          </div>
+        </article>
+        <article class="card card--kids" data-parallax>
+          <div class="card__photo"></div>
+          <div class="card__caption">
+            <span class="card__year">2023</span>
+            <h3 class="card__title">Почему?</h3>
+            <p class="card__desc">Бесконечные «почему» — это не вопросы, это способ познавать мир вместе.</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ ГЛАВА 4: ПРАЗДНИКИ ============ -->
+  <section class="chapter chapter--holidays" id="holidays">
+    <div class="chapter__inner">
+      <h2 class="chapter__title" data-reveal>Праздники</h2>
+      <p class="chapter__subtitle" data-reveal>
+        Дни, когда весь дом наполнен смехом, подарками и ароматом выпечки.<br>
+        Моменты, которые хочется повторять каждый год.
+      </p>
+      <div class="grid" data-reveal>
+        <article class="card card--holidays" data-parallax>
+          <div class="card__photo"></div>
+          <div class="card__caption">
+            <span class="card__year">2019</span>
+            <h3 class="card__title">Новый год</h3>
+            <p class="card__desc">Мандарины, ёлка и ожидание чуда, которое обязательно случится.</p>
+          </div>
+        </article>
+        <article class="card card--holidays" data-parallax>
+          <div class="card__photo"></div>
+          <div class="card__caption">
+            <span class="card__year">2021</span>
+            <h3 class="card__title">День рождения</h3>
+            <p class="card__desc">Торт, свечи и смех до слёз — вот что делает этот день особенным.</p>
+          </div>
+        </article>
+        <article class="card card--holidays" data-parallax>
+          <div class="card__photo"></div>
+          <div class="card__caption">
+            <span class="card__year">2023</span>
+            <h3 class="card__title">8 Марта</h3>
+            <p class="card__desc">Цветы, комплименты и ощущение, что весь мир говорит тебе «спасибо».</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ ГЛАВА 5: ДОМ ============ -->
+  <section class="chapter chapter--home" id="home">
+    <div class="chapter__inner">
+      <h2 class="chapter__title" data-reveal>Дом</h2>
+      <p class="chapter__subtitle" data-reveal>
+        Уютные вечера, тёплые пледы и тихие разговоры.<br>
+        Место, где всегда ждут и любят.
+      </p>
+      <div class="grid" data-reveal>
+        <article class="card card--home" data-parallax>
+          <div class="card__photo"></div>
+          <div class="card__caption">
+            <span class="card__year">2020</span>
+            <h3 class="card__title">Вечера у камина</h3>
+            <p class="card__desc">Тишина, которую не хочется нарушать, и ощущение полного счастья.</p>
+          </div>
+        </article>
+        <article class="card card--home" data-parallax>
+          <div class="card__photo"></div>
+          <div class="card__caption">
+            <span class="card__year">2022</span>
+            <h3 class="card__title">Завтраки вдвоём</h3>
+            <p class="card__desc">Кофе, круассаны и планы на день, которые, возможно, никогда не сбудутся.</p>
+          </div>
+        </article>
+        <article class="card card--home" data-parallax>
+          <div class="card__photo"></div>
+          <div class="card__caption">
+            <span class="card__year">2023</span>
+            <h3 class="card__title">Домашний уют</h3>
+            <p class="card__desc">Когда счастье — это просто быть рядом, в своём маленьком мире.</p>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+<!-- ============ ФИНАЛ: ФОРМА ============ -->
+  <section class="chapter chapter--home" id="final">
+    <div class="chapter__inner">
+      <h2 class="chapter__title" data-reveal>А какой момент — ваш?</h2>
+      <p class="chapter__subtitle" data-reveal>
+        Поделитесь своим любимым фото или историей — мы добавим его в наш альбом.<br>
+        Это может быть что угодно: чашка кофе, смешной кот, закат или просто улыбка.
+      </p>
+
+
+  </section>
+
+  <!-- ============ МОДАЛЬНОЕ ОКНО ============ -->
+  <div class="modal-overlay" id="modalOverlay" aria-hidden="true">
+    <div class="modal" role="dialog" aria-modal="true">
+      <button type="button" class="modal__close" id="modalClose" aria-label="Закрыть">&times;</button>
+      <div class="modal__photo" id="modalPhoto"></div>
+      <h3 class="modal__title" id="modalTitle"></h3>
+      <p class="modal__desc" id="modalDesc"></p>
+    </div>
+  </div>
+
+  <script src="album.js" defer></script>
+</body>
+</html>
